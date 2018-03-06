@@ -11,6 +11,18 @@
     <mat-icon>fitness_center</mat-icon>
     <span class="nav-caption">Training</span>
   </a>
+  <a mat-list-item routerLink="/plan" (click)="onClose()" *ngIf="isAuth$ | async">
+    <mat-icon>perm_identity</mat-icon>
+    <span class="nav-caption">My Plan</span>
+  </a>
+  <a mat-list-item routerLink="/tracking" (click)="onClose()" *ngIf="isAuth$ | async">
+    <mat-icon>today</mat-icon>
+    <span class="nav-caption">Daily Tracker</span>
+  </a>
+  <a mat-list-item routerLink="/trends" (click)="onClose()" *ngIf="isAuth$ | async">
+    <mat-icon>trending_up</mat-icon>
+    <span class="nav-caption">My Trends</span>
+  </a>
   <mat-list-item>
     <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
       <mat-icon>eject</mat-icon>

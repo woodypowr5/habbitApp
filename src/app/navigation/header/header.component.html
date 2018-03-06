@@ -19,6 +19,15 @@
         <a routerLink="/training">Training</a>
       </li>
       <li *ngIf="isAuth$ | async">
+        <a routerLink="/plan">My Plan</a>
+      </li>
+      <li *ngIf="isAuth$ | async">
+        <a routerLink="/tracking">Today</a>
+      </li>
+      <li *ngIf="isAuth$ | async">
+        <a routerLink="/trends">My Trends</a>
+      </li>
+      <li *ngIf="isAuth$ | async">
         <a style="cursor: pointer" (click)="onLogout()">Logout</a>
       </li>
     </ul>

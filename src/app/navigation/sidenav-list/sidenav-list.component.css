@@ -7,4 +7,6 @@ a:hover,
 a:active {
   color: lightgray;
 }
-
+mat-icon{
+  margin-right: 10px;
+}
