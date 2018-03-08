@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/subscription';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
@@ -42,11 +42,10 @@ export class MarkerService {
         })
         .subscribe(
           (markers: Marker[]) => {
-              console.log(markers);
             this.store.dispatch(new MarkerActions.SetAvailableMarkers(markers));
           },
           error => {
-            this.store.dispatch(new UI.StopLoading());
+            // this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
               'Fetching Markers failed, please try again later',
               null,

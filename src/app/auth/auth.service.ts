@@ -26,6 +26,9 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.store.dispatch(new Auth.SetAuthenticated());
+        this.store.dispatch(new Auth.SetUserData({
+          userId: user.uid
+        }));
         this.router.navigate(['/plan']);
       } else {
         this.trainingService.cancelSubscriptions();
@@ -53,6 +56,9 @@ export class AuthService {
     this.afAuth.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
+        this.store.dispatch(new Auth.SetUserData({
+          userId: result.uid
+        }));
         this.store.dispatch(new UI.StopLoading());
       })
       .catch(error => {
