@@ -1,31 +1,33 @@
-import { Marker } from './marker.model';
+import { Plan } from './plan.model';
+import { Marker } from '../shared/marker.model';
+
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
   PlanActions,
-  SET_AVAILABLE_MARKERS
+  SET_PLAN
 } from './plan.actions';
 
 import * as fromRoot from '../app.reducer';
 
 export interface PlanState {
-  availableMarkers: Marker[];
+  plan: Plan;
 }
 
 export interface State extends fromRoot.State {
-  training: PlanState;
+  plan: PlanState;
 }
 
 const initialState: PlanState = {
-  availableMarkers: []
+  plan: null
 };
 
 export function planReducer(state = initialState, action: PlanActions) {
   switch (action.type) {
-    case SET_AVAILABLE_MARKERS:
+    case SET_PLAN:
       return {
         ...state,
-        availableMarkers: action.payload
+        plan: action.payload
       };
     default: {
       return state;
@@ -35,4 +37,4 @@ export function planReducer(state = initialState, action: PlanActions) {
 
 export const getPlanState = createFeatureSelector<PlanState>('plan');
 
-export const getAvailableMarkers = createSelector(getPlanState, (state: PlanState) => state.availableMarkers);
+export const getPlan = createSelector(getPlanState, (state: PlanState) => state.plan);

@@ -1,14 +1,14 @@
-import { Marker } from './marker.model';
+import { Plan } from './plan.model';
 import { Action } from '@ngrx/store';
 
-export const SET_AVAILABLE_MARKERS = '[Plan] Set Available Markers';
+export const SET_PLAN = '[Plan] Set Plan';
 
 
-export class SetAvailableMarkers implements Action {
-  readonly type = SET_AVAILABLE_MARKERS;
+export class SetPlan implements Action {
+  readonly type = SET_PLAN;
 
-  constructor(public payload: Marker[]) {}
+  constructor(public payload: Plan) {}
 }
 
 export type PlanActions =
-  | SetAvailableMarkers;
+  | SetPlan;
