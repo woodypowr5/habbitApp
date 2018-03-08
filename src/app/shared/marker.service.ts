@@ -42,6 +42,7 @@ export class MarkerService {
         })
         .subscribe(
           (markers: Marker[]) => {
+              console.log(markers);
             this.store.dispatch(new MarkerActions.SetAvailableMarkers(markers));
           },
           error => {

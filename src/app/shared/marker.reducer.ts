@@ -1,4 +1,4 @@
-import { Marker } from './marker.model';
+
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
@@ -7,6 +7,8 @@ import {
 } from './marker.actions';
 
 import * as fromRoot from '../app.reducer';
+
+import { Marker } from './marker.model';
 
 export interface MarkerState {
   availableMarkers: Marker[];
@@ -33,6 +35,6 @@ export function markerReducer(state = initialState, action: MarkerActions) {
   }
 }
 
-export const getPlanState = createFeatureSelector<MarkerState>('marker');
+export const getMarkerState = createFeatureSelector<MarkerState>('marker');
 
-export const getAvailableMarkers = createSelector(getPlanState, (state: MarkerState) => state.availableMarkers);
+export const getAvailableMarkers = createSelector(getMarkerState, (state: MarkerState) => state.availableMarkers);

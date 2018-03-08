@@ -1,3 +1,13 @@
-<p>
-  edit-plan works!
-</p>
+<section class="edit-plan" fxLayout fxLayoutAlign="center">  
+    <mat-card fxFlex.xs="100%" *ngFor="let marker of availableMarkers$ | async">
+      <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
+      <mat-card-content fxLayoutAlign="center">
+       
+      </mat-card-content>
+      <!-- <mat-card-actions fxLayoutAlign="center" *ngIf="!(isLoading$ | async)">
+        <button *ngIf="exercises$ | async" type="submit" mat-button [disabled]="f.invalid">Start</button>
+        <button *ngIf="!(exercises$ | async)" type="button" mat-button (click)="fetchExercises()">Fetch Again</button>
+      </mat-card-actions> -->
+    </mat-card>
+</section>
+  
