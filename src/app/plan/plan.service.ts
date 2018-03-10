@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/subscription';
+import { Observable } from 'rxjs/observable';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Plan } from './plan.model';
+import { UserData } from './../auth/userData.model';
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
 import * as PlanActions from './plan.actions';
 import * as fromPlan from './plan.reducer';
+import * as fromRoot from '../app.reducer';
 
 @Injectable()
 export class PlanService {
+  userData$: Observable<UserData>;
   private planSubscriptions: Subscription[] = [];
 
   constructor(
     private db: AngularFirestore,
     private uiService: UIService,
     private store: Store<fromPlan.State>
-  ) {}
+  ) {
+    this.userData$ = this.store.select(fromRoot.getUserData);
+  }
 
-  fetchPlan() {
-    // this.store.dispatch(new UI.StartLoading());
+  fetchPlanByUserId(userId: string) {
     this.planSubscriptions.push(
       this.db
         .collection('plans')
@@ -37,11 +42,9 @@ export class PlanService {
         })
         .subscribe(
           (plan: Plan[]) => {
-            // this.store.dispatch(new UI.StopLoading());
             this.store.dispatch(new PlanActions.SetPlan(plan[0]));
           },
           error => {
-            // this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar(
               'Fetching Exercises failed, please try again later',
               null,

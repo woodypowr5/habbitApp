@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { MarkerService } from '../../shared/marker.service';
+import { PlanService } from './../plan.service';
 import { Marker } from '../../shared/marker.model';
 import { UserData } from './../../auth/userData.model';
 import { UIService } from '../../shared/ui.service';
@@ -18,19 +19,18 @@ import * as fromRoot from '../../app.reducer';
 })
 export class EditPlanComponent implements OnInit {
   availableMarkers$: Observable<Marker[]>;
-  userData$: Observable<UserData>;
   isLoading$: Observable<boolean>;
 
   constructor(
     private markerService: MarkerService,
+    private planService: PlanService,
     private uiService: UIService,
     private store: Store<fromMarker.State>
-  ) {}
 
+  ) {}
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.availableMarkers$ = this.store.select(fromMarker.getAvailableMarkers);
-    this.userData$ = this.store.select(fromRoot.getUserData);
     this.fetchMarkers();
   }
 

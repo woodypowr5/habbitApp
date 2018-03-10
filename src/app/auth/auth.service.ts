@@ -1,3 +1,5 @@
+import { UserData } from './userData.model';
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -7,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
+import { PlanService } from './../plan/plan.service';
 import { UIService } from '../shared/ui.service';
 import * as fromRoot from '../app.reducer';
 import * as UI from '../shared/ui.actions';
@@ -18,6 +21,7 @@ export class AuthService {
     private router: Router,
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
+    private planService: PlanService,
     private uiService: UIService,
     private store: Store<fromRoot.State>
   ) {}
@@ -25,10 +29,11 @@ export class AuthService {
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.store.dispatch(new Auth.SetAuthenticated());
-        this.store.dispatch(new Auth.SetUserData({
+        const userData: UserData = {
           userId: user.uid
-        }));
+        };
+        this.hydrateDependentServices(userData);
+        this.store.dispatch(new Auth.SetAuthenticated());
         this.router.navigate(['/plan']);
       } else {
         this.trainingService.cancelSubscriptions();
@@ -43,6 +48,7 @@ export class AuthService {
     this.afAuth.auth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
+        this.hydrateDependentServices(result);
         this.store.dispatch(new UI.StopLoading());
       })
       .catch(error => {
@@ -56,15 +62,17 @@ export class AuthService {
     this.afAuth.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
-        this.store.dispatch(new Auth.SetUserData({
-          userId: result.uid
-        }));
+        this.hydrateDependentServices(result);
         this.store.dispatch(new UI.StopLoading());
       })
       .catch(error => {
         this.store.dispatch(new UI.StopLoading());
         this.uiService.showSnackbar(error.message, null, 3000);
       });
+  }
+
+  hydrateDependentServices(data) {
+    this.planService.fetchPlanByUserId(data.userId);
   }
 
   logout() {

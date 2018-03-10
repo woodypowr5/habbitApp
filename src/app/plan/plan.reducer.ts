@@ -37,4 +37,4 @@ export function planReducer(state = initialState, action: PlanActions) {
 
 export const getPlanState = createFeatureSelector<PlanState>('plan');
 
-export const getPlan = createSelector(getPlanState, (state: PlanState) => state.plan);
+export const getMyPlan = createSelector(getPlanState, (state: PlanState) => state.plan);
