@@ -22,24 +22,29 @@ import * as fromPlan from './plan.reducer';
   styleUrls: ['./plan.component.css']
 })
 export class PlanComponent implements OnInit {
-  // private myPlan$: Observable<Plan>;
+  private myPlan$: Observable<Plan>;
   private availableMarkers$: Observable<Marker[]>;
   isLoading$: Observable<boolean>;
 
-  @Output() availableMarkersChanged = new EventEmitter<Plan>();
+  @Output() availableMarkersChanged = new EventEmitter<Marker[]>();
+  @Output() myPlanChanged = new EventEmitter<Plan>();
 
   constructor(
     private markerService: MarkerService,
     private planService: PlanService,
     private uiService: UIService,
-    // private store: Store<fromMarker.State>
-    private store: Store<fromPlan.State>
+    private store: Store<fromMarker.State>,
+    private store2: Store<fromPlan.State>
   ) { }
 
   ngOnInit() {
     this.availableMarkers$ = this.store.select(fromMarker.getAvailableMarkers);
     this.availableMarkers$.subscribe(
-      newMarkers => this.myPlanChanged(newMarkers)
+      newMarkers => this.markersChanged(newMarkers)
+    );
+    this.myPlan$ = this.store2.select(fromPlan.getMyPlan);
+    this.myPlan$.subscribe(
+      newPlan => this.planChanged(newPlan)
     );
     this.fetchMyPlan();
     this.fetchAvailableMarkers();
@@ -53,8 +58,11 @@ export class PlanComponent implements OnInit {
     this.markerService.fetchAvailableMarkers();
   }
 
-  myPlanChanged(newMarkers) {
-    console.log(newMarkers)
+  planChanged(newPlan) {
+    this.myPlanChanged.emit(newPlan);
+  }
+
+  markersChanged(newMarkers) {
     this.availableMarkersChanged.emit(newMarkers);
   }
 

@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs/observable';
 
 import { Marker } from '../../shared/marker.model';
-import { UserData } from './../../auth/userData.model';
+import { Plan } from './../plan.model';
 
 @Component({
   selector: 'app-edit-plan',
@@ -12,9 +11,10 @@ import { UserData } from './../../auth/userData.model';
 })
 export class EditPlanComponent implements OnInit {
   @Input() availableMarkers: Marker[];
+  @Input() myPlan: Plan;
 
   constructor() {}
 
   ngOnInit() {}
-  
+
 }

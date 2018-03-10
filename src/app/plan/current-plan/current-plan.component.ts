@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Plan } from './../plan.model';
-import { Observable } from 'rxjs/observable';
-import { PlanService } from './../plan.service';
-import * as fromPlan from '../plan.reducer';
-import * as fromRoot from '../../app.reducer';
+import { Marker } from '../../shared/marker.model';
 
 @Component({
   selector: 'app-current-plan',
@@ -13,19 +10,11 @@ import * as fromRoot from '../../app.reducer';
   styleUrls: ['./current-plan.component.css']
 })
 export class CurrentPlanComponent implements OnInit {
-  private myPlan$: Observable<Plan>;
+  @Input() availableMarkers: Marker[];
+  @Input() myPlan: Plan;
 
-  constructor(
-    private planService: PlanService,
-    private store: Store<fromPlan.State>
-  ) { }
+  constructor() { }
 
-  ngOnInit() {
-   this.fetchMyPlan();
-  }
-
-  fetchMyPlan() {
-    this.myPlan$ = this.store.select(fromPlan.getMyPlan);
-  }
+  ngOnInit() {}
 
 }
