@@ -1,5 +1,5 @@
 <section class="edit-plan" fxLayout fxLayoutAlign="center">  
-    <mat-card fxFlex.xs="100%" *ngFor="let marker of availableMarkers$ | async">
+    <mat-card fxFlex.xs="100%" *ngFor="let marker of availableMarkers | async">
       <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
        
