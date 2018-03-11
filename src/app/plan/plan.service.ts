@@ -16,6 +16,8 @@ import * as fromRoot from '../app.reducer';
 @Injectable()
 export class PlanService {
   userData$: Observable<UserData>;
+  plan$: Observable<Plan>;
+  plan: Plan;
   private planSubscriptions: Subscription[] = [];
 
   constructor(
@@ -24,6 +26,7 @@ export class PlanService {
     private store: Store<fromPlan.State>
   ) {
     this.userData$ = this.store.select(fromRoot.getUserData);
+    this.plan$ = this.store.select(fromPlan.getMyPlan);
   }
 
   fetchPlanByUserId(userId: string) {
