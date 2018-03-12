@@ -8,7 +8,7 @@
     class="current-plan"  
   >
   </mat-card>
-  <mat-divider class="available-marker card"></mat-divider>
+  <mat-divider></mat-divider>
   <mat-card
     class="add-remove-markers" 
     fxLayout 
@@ -22,6 +22,8 @@
       (markerAddedToPlan)="addMarkerToPlan($event)"
       (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
       *ngFor="let marker of availableMarkers" 
+      fxFlex="200px" 
+      xfFlex.xs="100%"
     >
   
     </app-edit-marker-card>

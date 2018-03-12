@@ -1,0 +1,30 @@
+{"availableMarkers": [
+    {
+        "id":    "7UxTec1xdGDfroU940yY",
+        "dataType": "discrete",
+        "iconName":"",
+        "max": -1,
+        "min": -1,
+        "name": "Mood",
+        "values": []
+    },
+    {
+        "id":    "7UxTec1xdGDfroU940y1",
+        "dataType": "discrete",
+        "iconName":"",
+        "max": -1,
+        "min": -1,
+        "name": "Diet Quality",
+        "values": []
+    },
+    {
+        "id":    "7UxTec1xdGDfroU940y2",
+        "dataType": "boolean",
+        "iconName":"",
+        "max": -1,
+        "min": -1,
+        "name": "Exercise",
+        "values": []
+    }
+]
+}    
