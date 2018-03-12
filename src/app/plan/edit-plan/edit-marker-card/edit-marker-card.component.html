@@ -1,0 +1,24 @@
+<mat-card 
+  fxFlex="300px" 
+>
+  <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
+  <mat-card-content fxLayoutAlign="center"></mat-card-content>
+  <mat-card-actions fxLayoutAlign="center">
+    <button 
+      *ngIf="isInPlan" 
+      type="button" 
+      mat-raised-button
+      (click)="removeMarkerFromPlan(marker)"
+    >
+      Remove from My Plan
+    </button>
+    <button 
+      *ngIf="!isInPlan" 
+      type="button"
+      mat-raised-button
+      (click)="addMarkerToPlan(marker)"
+    >
+      Add to My Plan
+    </button>
+  </mat-card-actions>
+</mat-card>

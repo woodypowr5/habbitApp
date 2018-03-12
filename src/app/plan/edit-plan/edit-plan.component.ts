@@ -12,8 +12,12 @@ import { Plan } from './../plan.model';
 export class EditPlanComponent implements OnInit {
   @Input() availableMarkers: Marker[];
   @Input() myPlan: Plan;
-  @Output() markerAddedToPlan = new EventEmitter<Marker>();
-  @Output() markerRemovedFromPlan = new EventEmitter<Marker>();
+  @Input() markerAddedToPlan;
+  @Input() markerRemovedFromPlan;
+
+  @Output() markerAddedToPlanParent = new EventEmitter<Marker>();
+  @Output() markerRemovedFromPlanParent = new EventEmitter<Marker>();
+  @Output() myPlanOut = new EventEmitter<Plan>();
 
   constructor() {}
 
@@ -29,11 +33,11 @@ export class EditPlanComponent implements OnInit {
   }
 
   addMarkerToPlan(marker) {
-    this.markerAddedToPlan.emit(marker);
+    this.markerAddedToPlanParent.emit(marker);
   }
 
   removeMarkerFromPlan(marker) {
-    this.markerRemovedFromPlan.emit(marker);
+    this.markerRemovedFromPlanParent.emit(marker);
   }
 
 }

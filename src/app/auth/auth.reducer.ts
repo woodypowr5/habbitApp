@@ -23,11 +23,13 @@ export function authReducer(state = initialState, action: AuthActions) {
   switch (action.type) {
     case SET_AUTHENTICATED:
       return {
-        isAuthenticated: true
+        isAuthenticated: true,
+        userData: state.userData
       };
     case SET_UNAUTHENTICATED:
       return {
-        isAuthenticated: false
+        isAuthenticated: false,
+        userData: state.userData
       };
     case SET_USER_DATA:
     return {

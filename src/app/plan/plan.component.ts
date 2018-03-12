@@ -25,8 +25,8 @@ export class PlanComponent implements OnInit {
   private myPlan: Plan;
   private availableMarkers: Marker[];
   isLoading$: Observable<boolean>;
-  @Input() markerAddedToPlan;
-  @Input() markerRemovedFromPlan;
+  @Input() markerAddedToPlanParent;
+  @Input() markerRemovedFromPlanParent;
 
   constructor(
     private markerService: MarkerService,
@@ -56,7 +56,6 @@ export class PlanComponent implements OnInit {
   }
 
   removeMarkerFromPlan(marker) {
-    console.log(marker)
     this.planService.removeMarkerFromPlan(marker);
   }
 

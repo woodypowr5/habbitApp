@@ -1,28 +1,30 @@
-<div *ngIf="myPlan; let myPlan; else loading">{{ myPlan.name }}</div>
-<section class="edit-plan" fxLayout fxLayoutAlign="center">  
-    <mat-card fxFlex.xs="100%" *ngFor="let marker of availableMarkers">
-      <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
-      <mat-card-content fxLayoutAlign="center">
-       
-      </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
-        <button 
-          *ngIf="isInPlan(marker)" 
-          type="button" 
-          mat-button
-          (click)="removeMarkerFromPlan(marker)"
-        >
-          Remove from My Plan
-        </button>
-        <button 
-          *ngIf="!isInPlan(marker)" 
-          type="button"
-          at-button
-          (click)="addMarkerToPlan(marker)"
-        >
-          Add to My Plan
-        </button>
-      </mat-card-actions>
-    </mat-card>
+
+<section 
+  class="edit-plan" 
+  fxLayout="column"
+>  
+  <!-- <div *ngIf="myPlan; let myPlan; else loading">{{ myPlan.name }}</div> -->
+  <mat-card
+    class="current-plan"  
+  >
+  </mat-card>
+  <mat-divider class="available-marker card"></mat-divider>
+  <mat-card
+    class="add-remove-markers" 
+    fxLayout 
+    fxLayoutAlign="center"
+    fxLayoutGap="20px" 
+  >
+    <app-edit-marker-card
+      [marker]="marker"
+      [myPlan]="myPlanOut"
+      [isInPlan]="isInPlan(marker)"
+      (markerAddedToPlan)="addMarkerToPlan($event)"
+      (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
+      *ngFor="let marker of availableMarkers" 
+    >
+  
+    </app-edit-marker-card>
+  </mat-card>
 </section>
   

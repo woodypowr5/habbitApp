@@ -13,12 +13,14 @@ import { PlanRoutingModule } from './plan-routing.module';
 import { planReducer } from './plan.reducer';
 import { CurrentPlanComponent } from './current-plan/current-plan.component';
 import { EditPlanComponent } from './edit-plan/edit-plan.component';
+import { EditMarkerCardComponent } from './edit-plan/edit-marker-card/edit-marker-card.component';
 
 @NgModule({
   declarations: [
     PlanComponent,
     CurrentPlanComponent,
-    EditPlanComponent
+    EditPlanComponent,
+    EditMarkerCardComponent
   ],
   imports: [
     SharedModule,

@@ -10,8 +10,8 @@
     <app-edit-plan 
       [availableMarkers]="availableMarkers"
       [myPlan]="myPlan"
-      (markerAddedToPlan)="addMarkerToPlan($event)"
-      (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
+      (markerAddedToPlanParent)="addMarkerToPlan($event)"
+      (markerRemovedFromPlanParent="removeMarkerFromPlan($event)"
     >
     </app-edit-plan>
   </mat-tab>
