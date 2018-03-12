@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/subscription';
@@ -6,6 +7,7 @@ import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Plan } from './plan.model';
+import { Marker } from './../shared/marker.model';
 import { UserData } from './../auth/userData.model';
 import { UIService } from '../shared/ui.service';
 import * as UI from '../shared/ui.actions';
@@ -39,7 +41,8 @@ export class PlanService {
           return docArray.map(doc => {
             return {
               id: doc.payload.doc.id,
-              name: doc.payload.doc.data().name
+              name: doc.payload.doc.data().name,
+              markers: doc.payload.doc.data().markers
             };
           });
         })
@@ -62,7 +65,42 @@ export class PlanService {
     this.planSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  private addDataToDatabase(plan: Plan) {
-    this.db.collection('plans').add(plan);
+  addMarkerToPlan(marker) {
+    let newPlan;
+    this.store.select(fromPlan.getMyPlan).pipe(take(1))
+      .subscribe(plan => {
+        const newMarkers = plan.markers;
+        newMarkers.push(marker);
+        newPlan = {
+          ...plan,
+          markers: newMarkers
+        };
+        this.modifyPlanInDatabase(newPlan);
+        this.store.dispatch(new PlanActions.SetPlan(newPlan));
+    });
+  }
+
+  removeMarkerFromPlan(marker) {
+    let newPlan;
+    this.store.select(fromPlan.getMyPlan).pipe(take(1))
+      .subscribe(plan => {
+        newPlan = {
+          ...plan,
+          markers: plan.markers.filter(currentMarker => currentMarker.id !== marker.id )
+        };
+        this.modifyPlanInDatabase(newPlan);
+        this.store.dispatch(new PlanActions.SetPlan(newPlan));
+    });
+  }
+
+  private addDataToDatabase(newPlan: Plan) {
+    this.db.collection('plans').add(newPlan);
+  }
+
+  private modifyPlanInDatabase(newPlan: Plan) {
+    const planRef = this.db.collection('plans').doc(newPlan.id);
+    const setWithMerge = planRef.set({
+      markers: newPlan.markers
+    }, { merge: true });
   }
 }

@@ -1,6 +1,6 @@
 import { getAvailableMarkers } from './../shared/marker.reducer';
 
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/observable';
 
@@ -25,6 +25,8 @@ export class PlanComponent implements OnInit {
   private myPlan: Plan;
   private availableMarkers: Marker[];
   isLoading$: Observable<boolean>;
+  @Input() markerAddedToPlan;
+  @Input() markerRemovedFromPlan;
 
   constructor(
     private markerService: MarkerService,
@@ -45,9 +47,18 @@ export class PlanComponent implements OnInit {
 
   fetchAvailableMarkers() {
     this.markerService.availableMarkers$.subscribe( markers => {
-      console.log(markers);
-     this.availableMarkers = markers;
+      this.availableMarkers = markers;
     });
   }
+
+  addMarkerToPlan(marker) {
+    this.planService.addMarkerToPlan(marker);
+  }
+
+  removeMarkerFromPlan(marker) {
+    console.log(marker)
+    this.planService.removeMarkerFromPlan(marker);
+  }
+
 
 }

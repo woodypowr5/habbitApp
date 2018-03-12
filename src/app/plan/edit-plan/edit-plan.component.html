@@ -5,10 +5,24 @@
       <mat-card-content fxLayoutAlign="center">
        
       </mat-card-content>
-      <!-- <mat-card-actions fxLayoutAlign="center" *ngIf="!(isLoading$ | async)">
-        <button *ngIf="exercises$ | async" type="submit" mat-button [disabled]="f.invalid">Start</button>
-        <button *ngIf="!(exercises$ | async)" type="button" mat-button (click)="fetchExercises()">Fetch Again</button>
-      </mat-card-actions> -->
+      <mat-card-actions fxLayoutAlign="center">
+        <button 
+          *ngIf="isInPlan(marker)" 
+          type="button" 
+          mat-button
+          (click)="removeMarkerFromPlan(marker)"
+        >
+          Remove from My Plan
+        </button>
+        <button 
+          *ngIf="!isInPlan(marker)" 
+          type="button"
+          at-button
+          (click)="addMarkerToPlan(marker)"
+        >
+          Add to My Plan
+        </button>
+      </mat-card-actions>
     </mat-card>
 </section>
   
