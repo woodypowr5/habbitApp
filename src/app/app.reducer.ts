@@ -1,3 +1,4 @@
+
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromUi from './shared/ui.reducer';
@@ -19,5 +20,4 @@ export const getIsLoading = createSelector(getUiState, fromUi.getIsLoading);
 export const getAuthState = createFeatureSelector<fromAuth.State>('auth');
 export const getIsAuth = createSelector(getAuthState, fromAuth.getIsAuth);
 export const getUserData = createSelector(getAuthState, fromAuth.getUserData);
-
 
