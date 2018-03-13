@@ -3,11 +3,11 @@
   class="edit-plan" 
   fxLayout="column"
 >  
-  <!-- <div *ngIf="myPlan; let myPlan; else loading">{{ myPlan.name }}</div> -->
-  <mat-card
-    class="current-plan"  
+  <app-edit-plan-current
+    [myPlan]="myPlan"
   >
-  </mat-card>
+
+  </app-edit-plan-current>
   <mat-divider></mat-divider>
   <mat-card
     class="add-remove-markers" 
@@ -17,13 +17,13 @@
   >
     <app-edit-marker-card
       [marker]="marker"
-      [myPlan]="myPlanOut"
+      [myPlan]="myPlan"
       [isInPlan]="isInPlan(marker)"
-      (markerAddedToPlan)="addMarkerToPlan($event)"
-      (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
-      *ngFor="let marker of availableMarkers" 
+      (markerAddedToPlan)="addMarkerToPlan($event, i)"
+      (markerRemovedFromPlan)="removeMarkerFromPlan($event, i)"
+      *ngFor="let marker of availableMarkers; let i = index" 
       fxFlex="200px" 
-      xfFlex.xs="100%"
+      fxFlex.xs="100%"
     >
   
     </app-edit-marker-card>

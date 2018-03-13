@@ -10,16 +10,16 @@ import { Plan } from './../plan.model';
   styleUrls: ['./edit-plan.component.css']
 })
 export class EditPlanComponent implements OnInit {
+  private selectedMarkers: Marker[] = [];
   @Input() availableMarkers: Marker[];
   @Input() myPlan: Plan;
+  @Input() isLoading: boolean;
   @Input() markerAddedToPlan;
   @Input() markerRemovedFromPlan;
 
   @Output() markerAddedToPlanParent = new EventEmitter<Marker>();
   @Output() markerRemovedFromPlanParent = new EventEmitter<Marker>();
-  @Output() myPlanOut = new EventEmitter<Plan>();
-
-  constructor() {}
+  // @Output() myPlanOut = new EventEmitter<Plan>();
 
   ngOnInit() {}
 

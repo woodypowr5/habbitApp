@@ -52,10 +52,12 @@ export class PlanComponent implements OnInit {
   }
 
   addMarkerToPlan(marker) {
+    marker.isLoading = false;
     this.planService.addMarkerToPlan(marker);
   }
 
   removeMarkerFromPlan(marker) {
+    marker.isLoading = false;
     this.planService.removeMarkerFromPlan(marker);
   }
 

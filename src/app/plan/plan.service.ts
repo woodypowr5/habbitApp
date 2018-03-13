@@ -21,6 +21,7 @@ export class PlanService {
   plan$: Observable<Plan>;
   plan: Plan;
   private planSubscriptions: Subscription[] = [];
+  private markerLoadingSubscriptions: Subscription[] = [];
 
   constructor(
     private db: AngularFirestore,
@@ -98,9 +99,12 @@ export class PlanService {
   }
 
   private modifyPlanInDatabase(newPlan: Plan) {
-    const planRef = this.db.collection('plans').doc(newPlan.id);
-    const setWithMerge = planRef.set({
-      markers: newPlan.markers
-    }, { merge: true });
+    console.log(newPlan)
+      setTimeout(() => {
+        const planRef = this.db.collection('plans').doc(newPlan.id);
+        const setWithMerge = planRef.set({
+          markers: newPlan.markers
+        }, { merge: true });
+      }, 1000);
   }
 }

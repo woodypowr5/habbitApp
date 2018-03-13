@@ -3,6 +3,7 @@ class="available-marker"
 >
   <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
   <mat-card-content fxLayoutAlign="center"></mat-card-content>
+  
   <mat-card-actions fxLayoutAlign="center">
     <button 
       *ngIf="isInPlan" 
@@ -21,4 +22,5 @@ class="available-marker"
       Add to My Plan
     </button>
   </mat-card-actions>
+  <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
 </mat-card>

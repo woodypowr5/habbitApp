@@ -6,4 +6,5 @@ export class Marker {
     min?: number;
     max?: number;
     iconName?: string;
+    isLoading: boolean;
 }
