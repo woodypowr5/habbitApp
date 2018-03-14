@@ -30,18 +30,18 @@ export class EditMarkerCardComponent implements OnInit, OnChanges {
 
   addMarkerToPlan(marker) {
     this.isLoading = true;
-    marker.isLoading = false;
-    setTimeout(() => {
+    // marker.isLoading = false;
+    // setTimeout(() => {
       this.markerAddedToPlan.emit(marker);
-    }, 1000);
+    // }, 1000);
   }
 
   removeMarkerFromPlan(marker) {
     this.isLoading = true;
-    marker.isLoading = false;
-    setTimeout(() => {
+    // marker.isLoading = false;
+    // setTimeout(() => {
       this.markerRemovedFromPlan.emit(marker);
-    }, 1000);
+    // }, 1000);
   }
 
 }

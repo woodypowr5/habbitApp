@@ -1,26 +1,40 @@
 <mat-card
-class="available-marker"
+  class="available-marker-card"
+  fxLayout="column"
+  fxLayoutAlign="space-between"
 >
   <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
-  <mat-card-content fxLayoutAlign="center"></mat-card-content>
+  <!-- <mat-card-content fxLayoutAlign="center"></mat-card-content> -->
   
-  <mat-card-actions fxLayoutAlign="center">
-    <button 
-      *ngIf="isInPlan" 
-      type="button" 
-      mat-raised-button
-      (click)="removeMarkerFromPlan(marker)"
-    >
-      Remove from My Plan
-    </button>
-    <button 
-      *ngIf="!isInPlan" 
-      type="button"
-      mat-raised-button
-      (click)="addMarkerToPlan(marker)"
-    >
-      Add to My Plan
-    </button>
+  <mat-icon class="marker-icon">
+    {{ marker.iconName }}
+  </mat-icon>
+
+  <mat-card-actions 
+    fxLayoutAlign="center center"
+    fxLayout="column"  
+    fxLayoutGap="20px"
+  >
+    <div class="action-container">
+      <button 
+        class="edit-marker-button remove-marker"
+        [disabled]="!isInPlan"
+        type="button" 
+        mat-raised-button
+        (click)="removeMarkerFromPlan(marker)"
+      >
+        Remove from My Plan
+      </button>
+      <button 
+      class="edit-marker-button add-marker"
+        [disabled]="isInPlan" 
+        type="button"
+        mat-raised-button
+        (click)="addMarkerToPlan(marker)"
+      >
+        Add to My Plan
+      </button>
+    </div>
   </mat-card-actions>
   <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
 </mat-card>

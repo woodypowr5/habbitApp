@@ -3,12 +3,14 @@
   class="edit-plan" 
   fxLayout="column"
 >  
+  Your plan tracks:
   <app-edit-plan-current
     [myPlan]="myPlan"
   >
 
   </app-edit-plan-current>
-  <mat-divider></mat-divider>
+  <mat-divider class="edit-plan-divider"> Here's what you can track:</mat-divider>
+ 
   <mat-card
     class="add-remove-markers" 
     fxLayout 
@@ -19,9 +21,9 @@
       [marker]="marker"
       [myPlan]="myPlan"
       [isInPlan]="isInPlan(marker)"
-      (markerAddedToPlan)="addMarkerToPlan($event, i)"
-      (markerRemovedFromPlan)="removeMarkerFromPlan($event, i)"
-      *ngFor="let marker of availableMarkers; let i = index" 
+      (markerAddedToPlan)="addMarkerToPlan($event)"
+      (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
+      *ngFor="let marker of availableMarkers" 
       fxFlex="200px" 
       fxFlex.xs="100%"
     >

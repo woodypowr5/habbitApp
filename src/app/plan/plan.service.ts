@@ -99,12 +99,9 @@ export class PlanService {
   }
 
   private modifyPlanInDatabase(newPlan: Plan) {
-    console.log(newPlan)
-      setTimeout(() => {
-        const planRef = this.db.collection('plans').doc(newPlan.id);
-        const setWithMerge = planRef.set({
-          markers: newPlan.markers
-        }, { merge: true });
-      }, 1000);
+    const planRef = this.db.collection('plans').doc(newPlan.id);
+    const setWithMerge = planRef.set({
+      markers: newPlan.markers
+    }, { merge: true });
   }
 }

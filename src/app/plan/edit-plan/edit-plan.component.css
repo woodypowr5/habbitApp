@@ -1,3 +1,6 @@
-.available-marker{
-    height: 400px;
+.edit-plan-divider{
+    height: 50px;
+}
+.add-remove-markers{
+    flex-wrap: wrap;
 }
