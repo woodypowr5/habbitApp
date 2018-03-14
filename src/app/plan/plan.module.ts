@@ -15,6 +15,7 @@ import { CurrentPlanComponent } from './current-plan/current-plan.component';
 import { EditPlanComponent } from './edit-plan/edit-plan.component';
 import { EditMarkerCardComponent } from './edit-plan/edit-marker-card/edit-marker-card.component';
 import { EditPlanCurrentComponent } from './edit-plan/edit-plan-current/edit-plan-current.component';
+import { ActiveMarkerCardComponent } from './edit-plan/active-marker-card/active-marker-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditPlanCurrentComponent } from './edit-plan/edit-plan-current/edit-pla
     CurrentPlanComponent,
     EditPlanComponent,
     EditMarkerCardComponent,
-    EditPlanCurrentComponent
+    EditPlanCurrentComponent,
+    ActiveMarkerCardComponent
   ],
   imports: [
     SharedModule,

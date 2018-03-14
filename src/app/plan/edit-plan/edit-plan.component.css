@@ -4,3 +4,6 @@
 .add-remove-markers{
     flex-wrap: wrap;
 }
+.active-markers{
+    flex-wrap: wrap;
+}

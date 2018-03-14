@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Marker } from '../../shared/marker.model';
@@ -9,8 +9,9 @@ import { Plan } from './../plan.model';
   templateUrl: './edit-plan.component.html',
   styleUrls: ['./edit-plan.component.css']
 })
-export class EditPlanComponent implements OnInit {
+export class EditPlanComponent implements OnInit, OnChanges {
   private selectedMarkers: Marker[] = [];
+  private inactiveMarkers: Marker[] = [];
   @Input() availableMarkers: Marker[];
   @Input() myPlan: Plan;
   @Input() markerAddedToPlan;
@@ -19,7 +20,15 @@ export class EditPlanComponent implements OnInit {
   @Output() markerAddedToPlanParent = new EventEmitter<Marker>();
   @Output() markerRemovedFromPlanParent = new EventEmitter<Marker>();
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  ngOnChanges() {
+    this.inactiveMarkers = this.availableMarkers.filter(marker =>
+      !this.isInPlan(marker));
+    )
+      // console.log(ina)
+  }
 
   isInPlan(marker) {
     for (let index = 0; index < this.myPlan.markers.length; index++) {

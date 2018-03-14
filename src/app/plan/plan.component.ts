@@ -61,5 +61,4 @@ export class PlanComponent implements OnInit {
     this.planService.removeMarkerFromPlan(marker);
   }
 
-
 }

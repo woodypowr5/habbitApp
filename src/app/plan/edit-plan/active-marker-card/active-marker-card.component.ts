@@ -6,15 +6,14 @@ import { Marker } from '../../../shared/marker.model';
 import { Plan } from './../../plan.model';
 
 @Component({
-  selector: 'app-edit-marker-card',
-  templateUrl: './edit-marker-card.component.html',
-  styleUrls: ['./edit-marker-card.component.css']
+  selector: 'app-active-marker-card',
+  templateUrl: './active-marker-card.component.html',
+  styleUrls: ['./active-marker-card.component.css']
 })
-export class EditMarkerCardComponent implements OnInit, OnChanges {
+export class ActiveMarkerCardComponent implements OnInit, OnChanges {
   @Input() marker: Marker;
   @Input() myPlan: Plan;
   @Input() isInPlan: boolean;
-  @Output() markerAddedToPlan = new EventEmitter<Marker>();
   @Output() markerRemovedFromPlan = new EventEmitter<Marker>();
   isLoading: boolean;
 
@@ -28,11 +27,12 @@ export class EditMarkerCardComponent implements OnInit, OnChanges {
     this.isLoading = this.marker.isLoading;
   }
 
-  addMarkerToPlan(marker) {
+  removeMarkerFromPlan(marker) {
     this.isLoading = true;
     // marker.isLoading = false;
     // setTimeout(() => {
-      this.markerAddedToPlan.emit(marker);
+      this.markerRemovedFromPlan.emit(marker);
     // }, 1000);
   }
+
 }
