@@ -16,10 +16,12 @@ export class ActiveMarkerCardComponent implements OnInit, OnChanges {
   @Input() isInPlan: boolean;
   @Output() markerRemovedFromPlan = new EventEmitter<Marker>();
   isLoading: boolean;
+  isExpanded: boolean;
 
   constructor() {}
 
   ngOnInit() {
+    this.isExpanded = false;
     this.isLoading = false;
   }
 
@@ -35,4 +37,7 @@ export class ActiveMarkerCardComponent implements OnInit, OnChanges {
     // }, 1000);
   }
 
+  toggleIsExpanded() {
+    this.isExpanded = !this.isExpanded;
+  }
 }

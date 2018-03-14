@@ -1,6 +1,9 @@
 .active-marker-card{
     height: 300px;
     margin-bottom: 20px;
+    width: 200px;
+    -webkit-transition: width 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: width 0.5s;
 }
 .marker-icon{
    height: 50px;
@@ -17,3 +20,14 @@ mat-card-title{
 .available-marker-card{
     justify-content: space-between;
 }
+.expanded{
+
+}
+mat-card.expanded{
+    width: 600px;
+}
+mat-card-content{
+    width: 300px;
+    display: block;
+}
+

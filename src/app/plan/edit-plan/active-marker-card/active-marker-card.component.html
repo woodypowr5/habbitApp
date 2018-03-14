@@ -3,20 +3,21 @@
   fxLayout="column"
   fxLayoutAlign="space-between"
   *ngIf="isInPlan"
+  [ngClass]="{'expanded': isExpanded === true}"
 >
   <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
   <!-- <mat-card-content fxLayoutAlign="center"></mat-card-content> -->
   
   <mat-icon class="marker-icon">
     {{ marker.iconName }}
+    {{ isExpanded }}
   </mat-icon>
 
-  <mat-card-actions 
-    fxLayoutAlign="center center"
-    fxLayout="column"  
-    fxLayoutGap="20px"
+  <mat-card-actions
+    class="action-container"
+    fxLayout  
+    fxLayoutAlign="space-between"  
   >
-    <div class="action-container">
       <button 
         class="edit-marker-button remove-marker"
         [disabled]="!isInPlan"
@@ -24,18 +25,22 @@
         mat-raised-button
         (click)="removeMarkerFromPlan(marker)"
       >
-        Remove from My Plan
+        Remove
       </button>
-      <!-- <button 
-      class="edit-marker-button add-marker"
-        [disabled]="isInPlan" 
+      <button 
+      class="settings-button"
         type="button"
-        mat-raised-button
-        (click)="addMarkerToPlan(marker)"
+        mat-icon-button
+        (click)="toggleIsExpanded()"
+        [ngClass]="{'expanded': isExpanded === true}"
       >
-        Add to My Plan
-      </button> -->
-    </div>
+        <mat-icon class="settings-icon">
+          settings
+        </mat-icon>
+      </button>
   </mat-card-actions>
+  <mat-card-content *ngIf="isExpanded === true">
+    Stuff Here
+  </mat-card-content>
   <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
 </mat-card>

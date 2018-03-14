@@ -3,7 +3,7 @@
   class="edit-plan" 
   fxLayout="column"
 >  
-  Your plan tracks:
+  <h1 class="header">Your Plan Right Now</h1>
   <!-- <div *ngFor="let marker of availableMarkers">{{marker.name}}</div> -->
   <mat-card
     class="active-markers" 
@@ -18,14 +18,14 @@
       (markerAddedToPlan)="addMarkerToPlan($event)"
       (markerRemovedFromPlan)="removeMarkerFromPlan($event)"
       *ngFor="let marker of (myPlan !== null ? myPlan.markers: [])" 
-      fxFlex="200px" 
-      fxFlex.xs="100%"
     >
   
     </app-active-marker-card>
   </mat-card>
 
-  <mat-divider class="edit-plan-divider"> Here's what you can track:</mat-divider>
+  <mat-divider class="edit-plan-divider"> 
+      <h1 class="header">Add or Remove Activities</h1>
+  </mat-divider>
  
   <mat-card
     class="add-remove-markers" 

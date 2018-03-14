@@ -24,10 +24,7 @@ export class EditPlanComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.inactiveMarkers = this.availableMarkers.filter(marker =>
-      !this.isInPlan(marker));
-    )
-      // console.log(ina)
+    this.inactiveMarkers = this.availableMarkers.filter(marker => !this.isInPlan(marker));
   }
 
   isInPlan(marker) {
