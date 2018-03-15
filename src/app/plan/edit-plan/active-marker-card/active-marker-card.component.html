@@ -3,7 +3,6 @@
   fxLayout="column"
   fxLayoutAlign="space-between"
   *ngIf="isInPlan"
-  [ngClass]="{'expanded': isExpanded === true}"
 >
   <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
   <!-- <mat-card-content fxLayoutAlign="center"></mat-card-content> -->
@@ -12,12 +11,12 @@
     {{ marker.iconName }}
     {{ isExpanded }}
   </mat-icon>
-
+  
   <mat-card-actions
     class="action-container"
     fxLayout  
     fxLayoutAlign="space-between"  
-  >
+  > 
       <button 
         class="edit-marker-button remove-marker"
         [disabled]="!isInPlan"
@@ -31,16 +30,16 @@
       class="settings-button"
         type="button"
         mat-icon-button
-        (click)="toggleIsExpanded()"
-        [ngClass]="{'expanded': isExpanded === true}"
+        (click)="openDialog()"
       >
         <mat-icon class="settings-icon">
           settings
         </mat-icon>
       </button>
   </mat-card-actions>
-  <mat-card-content *ngIf="isExpanded === true">
+  
+  <mat-card-content *ngIf="isExpanded === true">5
     Stuff Here
   </mat-card-content>
-  <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+  <!-- <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar> -->
 </mat-card>

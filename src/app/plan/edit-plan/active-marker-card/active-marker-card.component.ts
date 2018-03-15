@@ -1,6 +1,8 @@
 import { UIService } from './../../../shared/ui.service';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-// import { NgForm } from '@angular/forms';
+
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { ActiveMarkerSettingsComponent } from './active-marker-settings/active-marker-settings.component';
 
 import { Marker } from '../../../shared/marker.model';
 import { Plan } from './../../plan.model';
@@ -16,12 +18,11 @@ export class ActiveMarkerCardComponent implements OnInit, OnChanges {
   @Input() isInPlan: boolean;
   @Output() markerRemovedFromPlan = new EventEmitter<Marker>();
   isLoading: boolean;
-  isExpanded: boolean;
+  dialogRef: MatDialogRef<ActiveMarkerSettingsComponent>;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.isExpanded = false;
     this.isLoading = false;
   }
 
@@ -31,13 +32,15 @@ export class ActiveMarkerCardComponent implements OnInit, OnChanges {
 
   removeMarkerFromPlan(marker) {
     this.isLoading = true;
-    // marker.isLoading = false;
-    // setTimeout(() => {
-      this.markerRemovedFromPlan.emit(marker);
-    // }, 1000);
+    this.markerRemovedFromPlan.emit(marker);
   }
 
-  toggleIsExpanded() {
-    this.isExpanded = !this.isExpanded;
+  openDialog() {
+    this.dialogRef = this.dialog.open(ActiveMarkerSettingsComponent, {
+      data: {
+        marker: this.marker,
+        myPlan: this.myPlan
+      }
+    });
   }
 }

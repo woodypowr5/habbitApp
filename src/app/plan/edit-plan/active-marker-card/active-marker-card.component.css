@@ -20,14 +20,12 @@ mat-card-title{
 .available-marker-card{
     justify-content: space-between;
 }
-.expanded{
-
-}
-mat-card.expanded{
-    width: 600px;
-}
 mat-card-content{
     width: 300px;
     display: block;
+    height: 100%;
 }
 
+.edit-settings{
+    width: 300px;
+}
