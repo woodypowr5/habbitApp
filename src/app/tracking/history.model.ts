@@ -1,6 +1,6 @@
 import { Record } from './record.model';
 
-export class History {
+export interface History {
     userId: string;
     days: Record[];
 }

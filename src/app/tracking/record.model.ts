@@ -1,6 +1,6 @@
 import { Measurement } from './measurement.model';
 
-export class Record {
+export interface Record {
     userId: 'string';
     measurements: Measurement[];
 }

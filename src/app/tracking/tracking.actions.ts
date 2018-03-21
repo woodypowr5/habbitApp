@@ -1,9 +1,13 @@
+import { Measurement } from './measurement.model';
+import { History } from './history.model';
 import { Action } from '@ngrx/store';
 import { Record } from './record.model';
+
 
 export const SET_RECORD = '[Tracking] Set Record';
 export const MODIFY_RECORD = '[Tracking] Modify Record';
 export const DELETE_RECORD = '[Tracking] Delete Record';
+export const SET_HISTORY = '[Tracking] Set History';
 
 export class SetRecord implements Action {
   readonly type = SET_RECORD;
@@ -23,8 +27,15 @@ export class DeleteRecord implements Action {
   constructor(public payload: Record) {}
 }
 
+export class SetHistory implements Action {
+  readonly type = SET_HISTORY;
+  constructor(public payload: History) {}
+}
+
 export type TrackingActions =
   | SetRecord
   | ModifyRecord
-  | DeleteRecord;
+  | DeleteRecord
+  | SetHistory;
+
 

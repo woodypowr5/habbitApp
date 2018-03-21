@@ -1,4 +1,4 @@
 export interface Measurement {
-    marker: 'string';
+    marker: string;
     value: any;
 }

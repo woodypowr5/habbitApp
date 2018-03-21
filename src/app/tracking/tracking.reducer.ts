@@ -5,7 +5,8 @@ import {
   TrackingActions,
   SET_RECORD,
   MODIFY_RECORD,
-  DELETE_RECORD
+  DELETE_RECORD,
+  SET_HISTORY
 } from './tracking.actions';
 import * as fromRoot from '../app.reducer';
 
@@ -20,7 +21,7 @@ export interface State extends fromRoot.State {
 const initialState: TrackingState = {
  history: {
    userId: null,
-   days: []
+   days: [],
  }
 };
 
@@ -40,6 +41,11 @@ export function trackingReducer(state = initialState, action: TrackingActions) {
       return {
         ...state,
         plan: action.payload
+    };
+    case SET_HISTORY:
+      return {
+        ...state,
+        history: action.payload
     };
     default: {
       return state;

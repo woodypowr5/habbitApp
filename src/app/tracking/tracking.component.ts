@@ -14,7 +14,5 @@ export class TrackingComponent implements OnInit {
 
   constructor(private trackingService: TrackingService, private store: Store<fromTracking.State>) {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 }
