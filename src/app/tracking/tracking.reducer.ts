@@ -1,16 +1,16 @@
+import { History } from './history.model';
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
   TrackingActions,
-  SET_AVAILABLE_TRACKINGS,
-  SET_FINISHED_TRACKINGS,
-  START_TRACKING,
-  STOP_TRACKING
+  SET_RECORD,
+  MODIFY_RECORD,
+  DELETE_RECORD
 } from './tracking.actions';
 import * as fromRoot from '../app.reducer';
 
 export interface TrackingState {
-  name: string;
+  history: History;
 }
 
 export interface State extends fromRoot.State {
@@ -18,11 +18,29 @@ export interface State extends fromRoot.State {
 }
 
 const initialState: TrackingState = {
- name: 'hi'
+ history: {
+   userId: null,
+   days: []
+ }
 };
 
 export function trackingReducer(state = initialState, action: TrackingActions) {
   switch (action.type) {
+    case SET_RECORD:
+      return {
+        ...state,
+        record: action.payload
+      };
+    case MODIFY_RECORD:
+      return {
+        ...state,
+        record: action.payload
+    };
+    case SET_RECORD:
+      return {
+        ...state,
+        plan: action.payload
+    };
     default: {
       return state;
     }
@@ -31,3 +49,4 @@ export function trackingReducer(state = initialState, action: TrackingActions) {
 
 export const getTrackingState = createFeatureSelector<TrackingState>('tracking');
 
+export const getHistory = createSelector(getTrackingState, (state: TrackingState) => state.history);

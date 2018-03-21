@@ -11,11 +11,10 @@ import * as fromTracking from './tracking.reducer';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit {
-  ongoingTracking$: Observable<boolean>;
 
   constructor(private trackingService: TrackingService, private store: Store<fromTracking.State>) {}
 
   ngOnInit() {
-    // this.ongoingTracking$ = this.store.select(fromTracking.getIsTracking);
+    
   }
 }

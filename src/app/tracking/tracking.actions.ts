@@ -1,34 +1,30 @@
 import { Action } from '@ngrx/store';
+import { Record } from './record.model';
 
-export const SET_AVAILABLE_TRACKINGS = '[Tracking] Set Available Trackings';
-export const SET_FINISHED_TRACKINGS = '[Tracking] Set Finished Trackings';
-export const START_TRACKING = '[Tracking] Start Tracking';
-export const STOP_TRACKING = '[Tracking] Stop Tracking';
+export const SET_RECORD = '[Tracking] Set Record';
+export const MODIFY_RECORD = '[Tracking] Modify Record';
+export const DELETE_RECORD = '[Tracking] Delete Record';
 
-export class SetAvailableTrackings implements Action {
-  readonly type = SET_AVAILABLE_TRACKINGS;
+export class SetRecord implements Action {
+  readonly type = SET_RECORD;
 
-  constructor(public payload: any) {}
+  constructor(public payload: Record) {}
 }
 
-export class SetFinishedTrackings implements Action {
-  readonly type = SET_FINISHED_TRACKINGS;
+export class ModifyRecord implements Action {
+  readonly type = MODIFY_RECORD;
 
-  constructor(public payload: any) {}
+  constructor(public payload: Record) {}
 }
 
-export class StartTracking implements Action {
-  readonly type = START_TRACKING;
+export class DeleteRecord implements Action {
+  readonly type = DELETE_RECORD;
 
-  constructor(public payload: string) {}
-}
-
-export class StopTracking implements Action {
-  readonly type = STOP_TRACKING;
+  constructor(public payload: Record) {}
 }
 
 export type TrackingActions =
-  | SetAvailableTrackings
-  | SetFinishedTrackings
-  | StartTracking
-  | StopTracking;
+  | SetRecord
+  | ModifyRecord
+  | DeleteRecord;
+
