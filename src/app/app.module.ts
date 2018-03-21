@@ -15,7 +15,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 import { AuthService } from './auth/auth.service';
-import { TrainingService } from './training/training.service';
+import { TrackingService } from './tracking/tracking.service';
 import { MarkerService } from './shared/marker.service';
 import { PlanService } from './plan/plan.service';
 import { environment } from '../environments/environment';
@@ -42,7 +42,12 @@ import { reducers } from './app.reducer';
     AngularFirestoreModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, TrainingService, MarkerService, PlanService, UIService],
+  providers: [
+    AuthService,
+    TrackingService,
+    MarkerService,
+    PlanService,
+    UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

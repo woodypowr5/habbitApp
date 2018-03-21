@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
-import { TrainingService } from '../training/training.service';
+import { TrackingService } from '../tracking/tracking.service';
 import { PlanService } from './../plan/plan.service';
 import { UIService } from '../shared/ui.service';
 import * as fromRoot from '../app.reducer';
@@ -20,7 +20,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private trainingService: TrainingService,
+    private trackingService: TrackingService,
     private planService: PlanService,
     private uiService: UIService,
     private store: Store<fromRoot.State>
@@ -36,7 +36,7 @@ export class AuthService {
         this.store.dispatch(new Auth.SetAuthenticated());
         this.router.navigate(['/plan']);
       } else {
-        this.trainingService.cancelSubscriptions();
+        // this.trackingService.cancelSubscriptions();
         this.store.dispatch(new Auth.SetUnauthenticated());
         this.router.navigate(['/login']);
       }

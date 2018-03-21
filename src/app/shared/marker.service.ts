@@ -40,7 +40,8 @@ export class MarkerService {
               values: doc.payload.doc.data().values,
               min: doc.payload.doc.data().min,
               max: doc.payload.doc.data().max,
-              iconName: doc.payload.doc.data().iconName
+              iconName: doc.payload.doc.data().iconName,
+              isLoading: false
             };
           });
         })

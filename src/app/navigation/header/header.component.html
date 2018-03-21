@@ -16,9 +16,6 @@
         <a routerLink="/login">Login</a>
       </li>
       <li *ngIf="isAuth$ | async">
-        <a routerLink="/training">Training</a>
-      </li>
-      <li *ngIf="isAuth$ | async">
         <a routerLink="/plan">My Plan</a>
       </li>
       <li *ngIf="isAuth$ | async">
