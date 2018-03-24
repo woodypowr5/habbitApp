@@ -1,6 +1,6 @@
 import { Measurement } from './measurement.model';
 
 export interface Record {
-    userId: 'string';
+    date: string;
     measurements: Measurement[];
 }

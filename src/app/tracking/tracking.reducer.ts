@@ -21,7 +21,7 @@ export interface State extends fromRoot.State {
 const initialState: TrackingState = {
  history: {
    userId: null,
-   days: [],
+   records: [],
  }
 };
 
