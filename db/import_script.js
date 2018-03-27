@@ -9,6 +9,7 @@ admin.initializeApp({
 // const data = require("./history.json");
 const data = {
   histories: { 
+    "QwpGSkfFh0W3ksPjeKieiIAJtsJ2": {
       records: {
         "24 May 2017": {
             measurements: {
@@ -21,11 +22,9 @@ const data = {
             "Diet Quality": "poor",
             "Overall Mood": "average"
           }  
+        }
       }
-      },
-      userId: {
-          value: "QwpGSkfFh0W3ksPjeKieiIAJtsJ2"
-      }
+    }    
   }
 }
 

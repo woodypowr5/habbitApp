@@ -73,6 +73,7 @@ export class AuthService {
 
   hydrateDependentServices(data) {
     this.planService.fetchPlanByUserId(data.userId);
+    this.trackingService.fetchHistoryByUserId(data.userId);
   }
 
   logout() {
