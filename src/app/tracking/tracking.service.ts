@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Subscription, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -20,7 +19,7 @@ export class TrackingService {
   private historySubscriptions: Subscription[] = [];
   history$: Observable<History>;
   constructor(
-    private db: AngularFireDatabase,
+    private db: AngularFirestore,
     private uiService: UIService,
     private store: Store<fromTracking.State>
   ) {
@@ -29,12 +28,13 @@ export class TrackingService {
   }
 
   fetchHistoryByUserId(userId: string) {
-    let test = this.db.list('histories');
-    console.log(test)
+    this.db.collection('histories').doc(userId).valueChanges().subscribe(action => {
+      console.log(action)
+    }  
     // this.historySubscriptions.push(
     //   this.db
     //     .collection('histories')
-
+    //     .doc(userId)
     //     .snapshotChanges()
     //     .map(docArray => {
     //       // throw(new Error());
