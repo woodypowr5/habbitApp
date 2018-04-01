@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Subscription, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -19,7 +20,7 @@ export class TrackingService {
   private historySubscriptions: Subscription[] = [];
   history$: Observable<History>;
   constructor(
-    private db: AngularFirestore,
+    private db: AngularFireDatabase,
     private uiService: UIService,
     private store: Store<fromTracking.State>
   ) {
@@ -28,34 +29,36 @@ export class TrackingService {
   }
 
   fetchHistoryByUserId(userId: string) {
-    this.historySubscriptions.push(
-      this.db
-        .collection('histories')
-        .doc(userId)
-        .snapshotChanges()
-        .map(docArray => {
-          // throw(new Error());
-          return docArray.map(doc => {
-            return {
-              id: doc.payload.doc.id,
-              name: doc.payload.doc.data().name,
-              markers: doc.payload.doc.data().markers
-            };
-          });
-        })
-        .subscribe(
-          (history: any) => {
-            console.log(history);
-            this.store.dispatch(new TrackingActions.SetHistory(history));
-          },
-          error => {
-            this.uiService.showSnackbar(
-              'Fetching Exercises failed, please try again later',
-              null,
-              3000
-            );
-          }
-        )
-    );
+    let test = this.db.list('histories');
+    console.log(test)
+    // this.historySubscriptions.push(
+    //   this.db
+    //     .collection('histories')
+
+    //     .snapshotChanges()
+    //     .map(docArray => {
+    //       // throw(new Error());
+    //       return docArray.map(doc => {
+    //         return {
+    //           id: doc.payload.doc.id,
+    //           name: doc.payload.doc.data().name,
+    //           markers: doc.payload.doc.data().markers
+    //         };
+    //       });
+    //     })
+    //     .subscribe(
+    //       (history: any) => {
+    //         console.log(history);
+    //         this.store.dispatch(new TrackingActions.SetHistory(history));
+    //       },
+    //       error => {
+    //         this.uiService.showSnackbar(
+    //           'Fetching Exercises failed, please try again later',
+    //           null,
+    //           3000
+    //         );
+    //       }
+    //     )
+    // );
   }
 }

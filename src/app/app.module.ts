@@ -23,6 +23,7 @@ import { UIService } from './shared/ui.service';
 
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './app.reducer';
+import { AngularFireDatabase, AngularFireDatabaseModule, AngularFireDatabaseProvider } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { reducers } from './app.reducer';
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     StoreModule.forRoot(reducers)
   ],
   providers: [
@@ -47,6 +49,7 @@ import { reducers } from './app.reducer';
     TrackingService,
     MarkerService,
     PlanService,
+    AngularFireDatabaseProvider,
     UIService],
   bootstrap: [AppComponent]
 })
