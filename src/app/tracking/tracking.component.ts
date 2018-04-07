@@ -24,7 +24,8 @@ export class TrackingComponent implements OnInit {
 
   fetchMyHistory() {
     this.trackingService.history$.subscribe(
-      history => this.history = history
+      history => {this.history = history;
+      console.log(history);}
     );
   }
 
