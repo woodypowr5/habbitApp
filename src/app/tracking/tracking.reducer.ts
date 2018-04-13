@@ -25,6 +25,8 @@ const initialState: TrackingState = {
 };
 
 export function trackingReducer(state = initialState, action: TrackingActions) {
+  console.log(state)
+  console.log(action)
   switch (action.type) {
     case SET_RECORD:
       return {
@@ -43,7 +45,6 @@ export function trackingReducer(state = initialState, action: TrackingActions) {
     };
     case SET_HISTORY:
       return {
-        ...state,
         history: action.payload
     };
     default: {

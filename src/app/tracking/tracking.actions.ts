@@ -29,7 +29,9 @@ export class DeleteRecord implements Action {
 
 export class SetHistory implements Action {
   readonly type = SET_HISTORY;
-  constructor(public payload: History) {}
+  constructor(public payload: History) {
+    console.log(payload)
+  }
 }
 
 export type TrackingActions =

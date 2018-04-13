@@ -32,7 +32,7 @@ export class TrackingService {
   fetchHistoryByUserId(userId: string) {
     this.db
     .collection(`histories`)
-    .doc('QwpGSkfFh0W3ksPjeKieiIAJtsJ2')
+    .doc(userId)
     .collection('records')
     .snapshotChanges()
     .map(docArray => {
@@ -44,9 +44,13 @@ export class TrackingService {
       });
     })
     .subscribe(
-      (records: any) => {
-        console.log(records)
-        // this.store.dispatch(new HistoryActions.SetPlan(plan[0]));
+      (data: any) => {
+        console.log(data)
+        let myHistory = {
+          records: data
+        }
+        console.log(myHistory)
+        this.store.dispatch(new TrackingActions.SetHistory(myHistory));
       },
       error => {
         this.uiService.showSnackbar(
