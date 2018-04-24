@@ -8,7 +8,6 @@ import { TrackingComponent } from './tracking.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { TrackingRoutingModule } from './tracking-routing.module';
-import { trackingReducer } from './tracking.reducer';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { trackingReducer } from './tracking.reducer';
   ],
   imports: [
     SharedModule,
-    TrackingRoutingModule,
-    StoreModule.forFeature('tracking', trackingReducer)
+    TrackingRoutingModule
   ]
 })
 export class TrackingModule {}

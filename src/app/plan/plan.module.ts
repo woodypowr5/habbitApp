@@ -10,7 +10,6 @@ import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { PlanRoutingModule } from './plan-routing.module';
-import { planReducer } from './plan.reducer';
 import { CurrentPlanComponent } from './current-plan/current-plan.component';
 import { EditPlanComponent } from './edit-plan/edit-plan.component';
 import { EditMarkerCardComponent } from './edit-plan/edit-marker-card/edit-marker-card.component';
@@ -30,8 +29,7 @@ import { ActiveMarkerSettingsComponent } from './edit-plan/active-marker-card/ac
   ],
   imports: [
     SharedModule,
-    PlanRoutingModule,
-    StoreModule.forFeature('plan', planReducer)
+    PlanRoutingModule
   ],
   entryComponents: [ActiveMarkerSettingsComponent]
 })

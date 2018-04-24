@@ -1,17 +1,11 @@
-
-
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/subscription';
 import { Observable } from 'rxjs/observable';
-import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-
 
 import { Plan } from './plan.model';
 import { Marker } from './../shared/marker.model';
-
-import { UserData } from './../auth/userData.model';
 
 @Injectable()
 export class PlanService {
@@ -48,7 +42,7 @@ export class PlanService {
         )
     );
   }
-
+ 
   cancelSubscriptions() {
     this.planSubscriptions.forEach(sub => sub.unsubscribe());
   }
@@ -67,16 +61,6 @@ export class PlanService {
       markers: this.plan.markers.filter(currentMarker => currentMarker.id !== marker.id )
     });
     this.planChanged.next(this.plan);
-    // let newPlan;
-    // this.store.select(fromPlan.getMyPlan).pipe(take(1))
-    //   .subscribe(plan => {
-    //     newPlan = {
-    //       ...plan,
-    //       markers: plan.markers.filter(currentMarker => currentMarker.id !== marker.id )
-    //     };
-    //     this.modifyPlanInDatabase(newPlan);
-    //     this.store.dispatch(new PlanActions.SetPlan(newPlan));
-    // });
   }
 
   private addDataToDatabase(newPlan: Plan) {

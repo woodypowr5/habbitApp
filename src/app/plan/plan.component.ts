@@ -1,21 +1,13 @@
-import { getAvailableMarkers } from './../shared/marker.reducer';
-
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/observable';
+import { Subscriber, Subscription } from 'rxjs';
 
 import { MarkerService } from '../shared/marker.service';
 import { PlanService } from './plan.service';
-import { UIService } from './../shared/ui.service';
+
 import { Plan } from './plan.model';
 import { Marker } from '../shared/marker.model';
-import { UserData } from './../auth/userData.model';
-
-import * as fromMarker from '../shared/marker.reducer';
-import * as fromRoot from '../app.reducer';
-import * as fromPlan from './plan.reducer';
-import { Subscriber, Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-plan',
@@ -26,7 +18,6 @@ export class PlanComponent implements OnInit {
   private myPlan: Plan;
   private availableMarkers: Marker[] = [];
   private availableMarkerSubscription: Subscription;
-  isLoading$: Observable<boolean>;
   @Input() markerAddedToPlanParent;
   @Input() markerRemovedFromPlanParent;
 
