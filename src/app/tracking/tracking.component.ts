@@ -1,3 +1,4 @@
+import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
 import { History } from './history.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -11,6 +12,10 @@ import { TrackingService } from './tracking.service';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit, OnDestroy {
+  private mockRecord: Record = {
+    date: Date(),
+    measurements: []
+  };
   private history: History;
   private historySubscription: Subscription;
 
@@ -26,5 +31,10 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.historySubscription.unsubscribe();
+  }
+
+  addRecord(mockRecord) {
+    mockRecord.date = new Date();
+    this.trackingService.addRecordtoHistory(mockRecord);
   }
 }

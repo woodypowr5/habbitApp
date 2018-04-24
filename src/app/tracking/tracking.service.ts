@@ -1,3 +1,4 @@
+import { Measurement } from './measurement.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription, Observable, BehaviorSubject } from 'rxjs';
@@ -8,7 +9,7 @@ import { UserData } from './../auth/userData.model';
 
 @Injectable()
 export class TrackingService {
-  private userId: String = null;
+  private userId: string = null;
   historyChanged = new BehaviorSubject<History>(null);
   private fbSubs: Subscription[] = [];
   private historySubscriptions: Subscription[] = [];
@@ -41,5 +42,15 @@ export class TrackingService {
         error => {}
       )
     );
+  }
+
+  addRecordtoHistory(record) {
+    const historyRef = this.db.collection('histories').doc(this.userId).collection('records');
+    const oldHistory = this.history;
+    let newHistory = {
+          record
+    };
+    console.log(newHistory);
+    historyRef.add(newHistory);
   }
 }
