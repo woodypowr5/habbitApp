@@ -30,8 +30,7 @@ export class PlanComponent implements OnInit {
 
   constructor(
     private markerService: MarkerService,
-    private planService: PlanService,
-    private uiService: UIService,
+    private planService: PlanService
   ) {}
 
   ngOnInit() {
@@ -40,7 +39,7 @@ export class PlanComponent implements OnInit {
   }
 
   fetchMyPlan() {
-    this.planService.plan$.subscribe(
+    this.planService.planChanged.subscribe(
       plan => this.myPlan = plan
     );
   }

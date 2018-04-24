@@ -19,7 +19,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.trackingService.historyChanged.subscribe((history) => {
+    this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
       this.history = history;
     });
   }

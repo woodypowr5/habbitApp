@@ -21,22 +21,24 @@ export class TrackingService {
   ) {}
 
   fetchHistoryByUserId(userId: string) {
-    this.db
-    .collection(`histories`)
-    .doc(userId)
-    .collection('records')
-    .valueChanges()
-    .map(docArray => {
-      return docArray;
-    })
-    .subscribe(
-      (historyData: Record[]) => {
-        this.history = {
-          records: historyData
-        };
-        this.historyChanged.next(this.history);
-      },
-      error => {}
+    this.historySubscriptions.push(
+      this.db
+      .collection(`histories`)
+      .doc(userId)
+      .collection('records')
+      .valueChanges()
+      .map(docArray => {
+        return docArray;
+      })
+      .subscribe(
+        (historyData: Record[]) => {
+          this.history = {
+            records: historyData
+          };
+          this.historyChanged.next(this.history);
+        },
+        error => {}
+      )
     );
   }
 }
