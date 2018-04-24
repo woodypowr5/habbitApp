@@ -2,26 +2,19 @@ import { Observable } from 'rxjs/observable';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/subscription';
-import { take } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 
 import { Marker } from '../shared/marker.model';
-import { UIService } from '../shared/ui.service';
-import * as UI from '../shared/ui.actions';
-import * as MarkerActions from './marker.actions';
-import * as fromMarker from './marker.reducer';
 
 @Injectable()
 export class MarkerService {
-  availableMarkers$: Observable<Marker[]>;
+  availableMarkers: Marker[] = [];
+  availableMarkersChanged = new BehaviorSubject<Marker[]>(null);
   private markerSubscriptions: Subscription[] = [];
 
   constructor(
-    private db: AngularFirestore,
-    private uiService: UIService,
-    private store: Store<fromMarker.State>
+    private db: AngularFirestore
   ) {
-    this.availableMarkers$ = this.store.select(fromMarker.getAvailableMarkers);
     this.fetchAvailableMarkers();
   }
 
@@ -31,7 +24,6 @@ export class MarkerService {
         .collection('availableMarkers')
         .snapshotChanges()
         .map(docArray => {
-          // throw(new Error());
           return docArray.map(doc => {
             return {
               id: doc.payload.doc.id,
@@ -47,15 +39,10 @@ export class MarkerService {
         })
         .subscribe(
           (markers: Marker[]) => {
-            this.store.dispatch(new MarkerActions.SetAvailableMarkers(markers));
+            this.availableMarkers = markers;
+            this.availableMarkersChanged.next(this.availableMarkers);
           },
-          error => {
-            this.uiService.showSnackbar(
-              'Fetching Markers failed, please try again later',
-              null,
-              3000
-            );
-          }
+          error => {}
         )
     );
   }

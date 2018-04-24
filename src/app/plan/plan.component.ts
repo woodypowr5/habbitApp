@@ -14,6 +14,7 @@ import { UserData } from './../auth/userData.model';
 import * as fromMarker from '../shared/marker.reducer';
 import * as fromRoot from '../app.reducer';
 import * as fromPlan from './plan.reducer';
+import { Subscriber, Subscription } from 'rxjs';
 
 
 @Component({
@@ -23,7 +24,8 @@ import * as fromPlan from './plan.reducer';
 })
 export class PlanComponent implements OnInit {
   private myPlan: Plan;
-  private availableMarkers: Marker[];
+  private availableMarkers: Marker[] = [];
+  private availableMarkerSubscription: Subscription;
   isLoading$: Observable<boolean>;
   @Input() markerAddedToPlanParent;
   @Input() markerRemovedFromPlanParent;
@@ -45,8 +47,11 @@ export class PlanComponent implements OnInit {
   }
 
   fetchAvailableMarkers() {
-    this.markerService.availableMarkers$.subscribe( markers => {
-      this.availableMarkers = markers;
+    this.availableMarkerSubscription = this.markerService.availableMarkersChanged.subscribe(
+      markers => {
+        if (markers !== null) {
+          this.availableMarkers = markers;
+        }
     });
   }
 
