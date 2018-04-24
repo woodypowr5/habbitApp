@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { UIService } from '../shared/ui.service';
@@ -16,17 +16,19 @@ import { UserData } from './../auth/userData.model';
 @Injectable()
 export class TrackingService {
   userData$: Observable<UserData>;
+  historyChanged = new Subject<History>();
   private fbSubs: Subscription[] = [];
   private historySubscriptions: Subscription[] = [];
-  history$: Observable<History>;
-  items: any;
+  private history: History = {
+    records: []
+  };
+  
   constructor(
     private db: AngularFirestore,
     private uiService: UIService,
     private store: Store<fromTracking.State>
   ) {
     this.userData$ = this.store.select(fromRoot.getUserData);
-    this.history$ = this.store.select(fromTracking.getHistory);
   }
 
   fetchHistoryByUserId(userId: string) {
@@ -34,23 +36,16 @@ export class TrackingService {
     .collection(`histories`)
     .doc(userId)
     .collection('records')
-    .snapshotChanges()
+    .valueChanges()
     .map(docArray => {
-      return docArray.map(doc => {
-        return {
-          id: doc.payload.doc.id,
-          records: doc.payload.doc.data()
-        };
-      });
+      return docArray
     })
     .subscribe(
-      (data: any) => {
-        console.log(data)
-        let myHistory = {
-          records: data
+      (historyData: Record[]) => {
+        this.history = {
+          records: historyData
         }
-        console.log(myHistory)
-        this.store.dispatch(new TrackingActions.SetHistory(myHistory));
+        this.historyChanged.next(this.history)
       },
       error => {
         this.uiService.showSnackbar(

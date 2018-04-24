@@ -49,6 +49,7 @@ export class PlanService {
         })
         .subscribe(
           (plan: Plan[]) => {
+            console.log(plan)
             this.store.dispatch(new PlanActions.SetPlan(plan[0]));
           },
           error => {
