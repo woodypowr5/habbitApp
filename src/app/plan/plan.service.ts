@@ -1,4 +1,5 @@
 
+
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/subscription';
@@ -6,45 +7,42 @@ import { Observable } from 'rxjs/observable';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
+
 import { Plan } from './plan.model';
 import { Marker } from './../shared/marker.model';
-import * as UI from '../shared/ui.actions';
-import * as PlanActions from './plan.actions';
-import * as fromPlan from './plan.reducer';
-import * as fromRoot from '../app.reducer';
+
+import { UserData } from './../auth/userData.model';
 
 @Injectable()
 export class PlanService {
-  private plan: Plan;
+  private userId: string = null;
+  private plan: Plan = {
+    name: null,
+    markers: []
+  };
   planChanged = new BehaviorSubject<Plan>(null);
   private planSubscriptions: Subscription[] = [];
 
-  constructor(
-    private db: AngularFirestore,
-  ) {
-
-  }
+  constructor(private db: AngularFirestore) {}
 
   fetchPlanByUserId(userId: string) {
+    this.userId = userId;
     this.planSubscriptions.push(
       this.db
         .collection('plans')
-        .snapshotChanges()
+        .valueChanges()
         .map(docArray => {
-          // throw(new Error());
-          return docArray.map(doc => {
-            return {
-              id: doc.payload.doc.id,
-              name: doc.payload.doc.data().name,
-              markers: doc.payload.doc.data().markers
-            };
-          });
+          return docArray;
         })
         .subscribe(
           (plan: Plan[]) => {
-            this.plan = plan[0];
+            if (plan.length > 0) {
+              this.plan = plan[0];
+              if (!plan[0].markers) {
+                this.plan.markers = [];
+              }
+            }
             this.planChanged.next(plan[0]);
-            // this.store.dispatch(new PlanActions.SetPlan(plan[0]));
           },
           error => {}
         )
@@ -56,6 +54,11 @@ export class PlanService {
   }
 
   addMarkerToPlan(marker) {
+    this.modifyPlanInDatabase({
+      ...this.plan,
+      markers: [...this.plan.markers, marker]
+    });
+    this.planChanged.next(this.plan);
     // let newPlan;
     // this.store.select(fromPlan.getMyPlan).pipe(take(1))
     //   .subscribe(plan => {
@@ -88,7 +91,7 @@ export class PlanService {
   }
 
   private modifyPlanInDatabase(newPlan: Plan) {
-    const planRef = this.db.collection('plans').doc(newPlan.id);
+    const planRef = this.db.collection('plans').doc(this.userId);
     const setWithMerge = planRef.set({
       markers: newPlan.markers
     }, { merge: true });

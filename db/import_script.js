@@ -6,27 +6,7 @@ admin.initializeApp({
   databaseURL: "https://habbitapp.firebaseio.com"
 });
 
-// const data = require("./history.json");
-const data = {
-  histories: { 
-    "QwpGSkfFh0W3ksPjeKieiIAJtsJ2": {
-      records: {
-        "24 May 2017": {
-            measurements: {
-              "Diet Quality": "good",
-              "Overall Mood": "Good"
-            }  
-        }, 
-        "25 May 2017": {
-          measurements: {
-            "Diet Quality": "poor",
-            "Overall Mood": "average"
-          }  
-        }
-      }
-    }    
-  }
-}
+const data = require("./plans.json");
 
 data && Object.keys(data).forEach(key => {
   const nestedContent = data[key];

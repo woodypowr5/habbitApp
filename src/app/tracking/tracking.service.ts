@@ -8,7 +8,7 @@ import { UserData } from './../auth/userData.model';
 
 @Injectable()
 export class TrackingService {
-  userData$: Observable<UserData>;
+  private userId: String = null;
   historyChanged = new BehaviorSubject<History>(null);
   private fbSubs: Subscription[] = [];
   private historySubscriptions: Subscription[] = [];
@@ -21,6 +21,7 @@ export class TrackingService {
   ) {}
 
   fetchHistoryByUserId(userId: string) {
+    this.userId = userId;
     this.historySubscriptions.push(
       this.db
       .collection(`histories`)
