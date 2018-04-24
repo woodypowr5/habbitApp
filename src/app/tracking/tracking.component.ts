@@ -1,3 +1,4 @@
+import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
 import { History } from './history.model';

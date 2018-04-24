@@ -24,6 +24,7 @@ import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { reducers } from './app.reducer';
 import { AngularFireDatabase, AngularFireDatabaseModule, AngularFireDatabaseProvider } from 'angularfire2/database';
+import { RecordsComponent } from './tracking/records/records.component';
 
 @NgModule({
   declarations: [

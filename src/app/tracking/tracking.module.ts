@@ -8,10 +8,12 @@ import { TrackingComponent } from './tracking.component';
 import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { TrackingRoutingModule } from './tracking-routing.module';
+import { RecordsComponent } from './records/records.component';
 
 @NgModule({
   declarations: [
     TrackingComponent,
+    RecordsComponent
   ],
   imports: [
     SharedModule,
