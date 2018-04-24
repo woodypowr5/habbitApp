@@ -59,21 +59,14 @@ export class PlanService {
       markers: [...this.plan.markers, marker]
     });
     this.planChanged.next(this.plan);
-    // let newPlan;
-    // this.store.select(fromPlan.getMyPlan).pipe(take(1))
-    //   .subscribe(plan => {
-    //     const newMarkers = plan.markers;
-    //     newMarkers.push(marker);
-    //     newPlan = {
-    //       ...plan,
-    //       markers: newMarkers
-    //     };
-    //     this.modifyPlanInDatabase(newPlan);
-    //     this.store.dispatch(new PlanActions.SetPlan(newPlan));
-    // });
   }
 
   removeMarkerFromPlan(marker) {
+    this.modifyPlanInDatabase({
+      ...this.plan,
+      markers: this.plan.markers.filter(currentMarker => currentMarker.id !== marker.id )
+    });
+    this.planChanged.next(this.plan);
     // let newPlan;
     // this.store.select(fromPlan.getMyPlan).pipe(take(1))
     //   .subscribe(plan => {
