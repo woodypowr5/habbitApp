@@ -9,11 +9,15 @@ import { MaterialModule } from '../material.module';
 import { SharedModule } from '../shared/shared.module';
 import { TrackingRoutingModule } from './tracking-routing.module';
 import { RecordsComponent } from './records/records.component';
+import { RecordComponent } from './records/record/record.component';
+import { RecordDetailComponent } from './record-detail/record-detail.component';
 
 @NgModule({
   declarations: [
     TrackingComponent,
-    RecordsComponent
+    RecordsComponent,
+    RecordComponent,
+    RecordDetailComponent
   ],
   imports: [
     SharedModule,

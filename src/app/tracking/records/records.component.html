@@ -3,4 +3,9 @@
   fxLayout
   fxLayoutAlign="space-between"
 >
-</mat-card>
+  <app-record *ngFor="let record of records | slice:0 "
+    class="today"
+    [record]="record.record"
+  >
+  </app-record>
+</mat-card>  

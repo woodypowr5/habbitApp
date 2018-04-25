@@ -2,10 +2,11 @@ import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
 import { History } from './history.model';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { TrackingService } from './tracking.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-tracking',
@@ -26,6 +27,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
+      // history.records = _.sortBy(history.records, ['date']);
       this.history = history;
     });
   }

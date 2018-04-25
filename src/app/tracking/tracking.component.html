@@ -8,4 +8,5 @@
 
 <button (click)="addRecord(mockRecord)">Add Record</button>
 
-<app-records></app-records>
+<app-records [records]="history.records"></app-records>
+<app-record-detail [record]="activeRecord"></app-record-detail>
