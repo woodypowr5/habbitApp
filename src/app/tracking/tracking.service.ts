@@ -50,7 +50,6 @@ export class TrackingService {
     let newRecord = {
           record
     };
-    console.log(newRecord);
     historyRef.add(newRecord);
   }
 }

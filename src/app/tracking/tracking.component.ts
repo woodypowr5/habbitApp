@@ -2,7 +2,7 @@ import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
 import { History } from './history.model';
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { TrackingService } from './tracking.service';
@@ -14,6 +14,7 @@ import * as _ from 'lodash';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit, OnDestroy {
+  private activeRecord: Record;
   private mockRecord: Record = {
     date: Date(),
     measurements: []
@@ -27,8 +28,8 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
-      // history.records = _.sortBy(history.records, ['date']);
       this.history = history;
+      this.activeRecord = history.records[0];
     });
   }
 
@@ -40,4 +41,9 @@ export class TrackingComponent implements OnInit, OnDestroy {
     mockRecord.date = new Date();
     this.trackingService.addRecordtoHistory(mockRecord);
   }
+
+  setActiveRecord(record) {
+    this.activeRecord = record;
+  }
+
 }

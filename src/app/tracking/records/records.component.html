@@ -1,11 +1,12 @@
 <mat-card
-  class=""
   fxLayout
   fxLayoutAlign="space-between"
+  style="margin-top: 20px"
 >
   <app-record *ngFor="let record of records | slice:0 "
     class="today"
     [record]="record.record"
-  >
+    (newActiveRecord)="setActiveRecord($event)"
+    >
   </app-record>
 </mat-card>  

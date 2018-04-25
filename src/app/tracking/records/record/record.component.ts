@@ -1,5 +1,6 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Record } from '../../record.model';
 
 @Component({
   selector: 'app-record',
@@ -8,11 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RecordComponent implements OnInit {
   @Input() record;
-  private activeRecord;
+  @Output() newActiveRecord: EventEmitter<Record> = new EventEmitter();
+
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.record.record);
-  }
+  ngOnInit() {}
 
+  setActiveRecord(record) {
+    this.newActiveRecord.emit(record);
+    console.log(record);
+  }
 }

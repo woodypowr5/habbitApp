@@ -42,7 +42,7 @@ export class PlanService {
         )
     );
   }
- 
+
   cancelSubscriptions() {
     this.planSubscriptions.forEach(sub => sub.unsubscribe());
   }

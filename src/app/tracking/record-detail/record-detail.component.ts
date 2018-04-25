@@ -8,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RecordDetailComponent implements OnInit {
   @Input() record: Record;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.record);
   }
 
 }

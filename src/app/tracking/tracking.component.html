@@ -8,5 +8,9 @@
 
 <button (click)="addRecord(mockRecord)">Add Record</button>
 
-<app-records [records]="history.records"></app-records>
+<app-records 
+    [records]="history.records"
+    (setNewActiveRecord)="setActiveRecord($event)"
+>
+</app-records>
 <app-record-detail [record]="activeRecord"></app-record-detail>
