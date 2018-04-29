@@ -1,8 +1,13 @@
 <mat-card
-  class=""
-  fxLayout
+  class="day"
+  fxLayout="column"
   fxLayoutAlign="space-between"
   (click)="setActiveRecord(record)"
->
-  {{ record.date }}
-</mat-card>
+> 
+  <h3>{{ record.date | calendarDay:record.date }}</h3>
+  <mat-card
+    *ngIf="recordExistsForDay()"
+    class="record"
+  >
+  </mat-card>
+</mat-card>  

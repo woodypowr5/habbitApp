@@ -1,6 +1,7 @@
 import { Measurement } from './measurement.model';
+import * as moment from 'moment';
 
 export interface Record {
-    date: string;
+    date: Date;
     measurements: Measurement[];
 }

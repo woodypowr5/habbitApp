@@ -1,6 +1,7 @@
-
+import { CalendarDayPipe } from './../../../shared/pipes/calendarDay.pipe';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Record } from '../../record.model';
+
 
 @Component({
   selector: 'app-record',
@@ -17,6 +18,9 @@ export class RecordComponent implements OnInit {
 
   setActiveRecord(record) {
     this.newActiveRecord.emit(record);
-    console.log(record);
+  }
+
+  recordExistsForDay() {
+    return true;
   }
 }

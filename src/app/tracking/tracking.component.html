@@ -1,6 +1,10 @@
-<div *ngFor="let record of history.records">
-    {{ record | json }}
-</div>
+<app-records 
+    [records]="history.records"
+    (setNewActiveRecord)="setActiveRecord($event)"
+>
+</app-records>
+<app-record-detail [record]="activeRecord"></app-record-detail>
+
 
 <h2>Operations</h2>
 
@@ -8,9 +12,6 @@
 
 <button (click)="addRecord(mockRecord)">Add Record</button>
 
-<app-records 
-    [records]="history.records"
-    (setNewActiveRecord)="setActiveRecord($event)"
->
-</app-records>
-<app-record-detail [record]="activeRecord"></app-record-detail>
+<div *ngFor="let record of history.records">
+    {{ record | json }}
+</div>

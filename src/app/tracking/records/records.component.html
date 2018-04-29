@@ -3,10 +3,11 @@
   fxLayoutAlign="space-between"
   style="margin-top: 20px"
 >
-  <app-record *ngFor="let record of records | slice:0 "
+  <app-record *ngFor="let record of records | slice:0:7; let index = index"
     class="today"
     [record]="record.record"
-    (newActiveRecord)="setActiveRecord($event)"
+    (newActiveRecord)="setActiveRecord($event, index)"
     >
+    {{ record.record | json }}
   </app-record>
 </mat-card>  

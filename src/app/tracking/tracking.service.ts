@@ -5,6 +5,7 @@ import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 import { Record } from './record.model';
 import { History } from './history.model';
 import { UserData } from './../auth/userData.model';
+import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 
 
 @Injectable()

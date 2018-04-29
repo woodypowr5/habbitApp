@@ -1,3 +1,4 @@
+import { CalendarDayPipe } from './../shared/pipes/calendarDay.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,11 +18,15 @@ import { RecordDetailComponent } from './record-detail/record-detail.component';
     TrackingComponent,
     RecordsComponent,
     RecordComponent,
-    RecordDetailComponent
+    RecordDetailComponent,
+    CalendarDayPipe
   ],
   imports: [
     SharedModule,
     TrackingRoutingModule
+  ],
+  providers: [
+    CalendarDayPipe
   ]
 })
 export class TrackingModule {}

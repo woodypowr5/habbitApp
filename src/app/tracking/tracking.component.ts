@@ -6,7 +6,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Observable, Subscription } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { TrackingService } from './tracking.service';
-import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tracking',
@@ -14,9 +14,12 @@ import * as _ from 'lodash';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit, OnDestroy {
-  private activeRecord: Record;
+  private activeRecord: Record = {
+    date: null,
+    measurements: []
+  };
   private mockRecord: Record = {
-    date: Date(),
+    date: new Date(),
     measurements: []
   };
   private history: History;
@@ -29,7 +32,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
       this.history = history;
-      this.activeRecord = history.records[0];
+      this.activeRecord = this.history.records[0];
     });
   }
 
@@ -37,9 +40,11 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.historySubscription.unsubscribe();
   }
 
-  addRecord(mockRecord) {
-    mockRecord.date = new Date();
-    this.trackingService.addRecordtoHistory(mockRecord);
+  addRecord() {
+    const randomDate = Math.ceil(Math.trunc((Math.random() * 30)));
+    const convertedDate = moment().add(randomDate, 'day');
+    this.mockRecord.date = convertedDate.toDate();
+    this.trackingService.addRecordtoHistory(this.mockRecord);
   }
 
   setActiveRecord(record) {
