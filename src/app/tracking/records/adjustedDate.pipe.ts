@@ -2,16 +2,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as moment from 'moment';
 
 @Pipe({
-    name: "adjustedDate"
+    name: 'adjustedDate'
 })
 export class AdjustedDatePipe implements PipeTransform {
-  transform(value: any, date: moment.Moment, index: any) {
-    console.log(arguments)
-    console.log(index)
-    if (!date) {
+  transform(value: any, index: any) {
+    if (!value) {
       return '';
     }
-    date = moment(date).add(index - 2, 'days');
-    return date.format("DD MMM");
+    value = moment(value).add(index - 3, 'days');
+    return value.format('DD MMM');
   }
 }

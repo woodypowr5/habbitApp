@@ -1,4 +1,5 @@
-import { CalendarDayPipe } from './../../../shared/pipes/calendarDay.pipe';
+import { AdjustedDatePipe } from './../adjustedDate.pipe';
+import { TrackingDay } from './../../trackingDay.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Record } from '../../record.model';
 
@@ -11,14 +12,26 @@ import { Record } from '../../record.model';
 export class RecordComponent implements OnInit {
   @Input() record;
   @Input() index;
-  @Output() newActiveRecord: EventEmitter<Record> = new EventEmitter();
+  @Input() date;
+  @Output() newActiveRecord: EventEmitter<TrackingDay> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {}
 
-  setActiveRecord(record) {
-    this.newActiveRecord.emit(record);
+  setActiveDate(record, index, date) {
+    let today: TrackingDay = {
+      date: date,
+      record: {
+        date: null,
+        measurements: []
+      }
+    };
+    if (record) {
+      today.record = record;
+    }
+    console.log(today)
+    this.newActiveRecord.emit(today);
   }
 
   recordExistsForDay() {

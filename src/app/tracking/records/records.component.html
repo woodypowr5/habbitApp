@@ -1,14 +1,15 @@
+{{ activeDate }}
 <mat-card
   fxLayout
   fxLayoutAlign="space-between"
   style="margin-top: 20px"
 >
-  <app-record *ngFor="let record of records | slice:0:7; let index = index"
+  <app-record *ngFor="let day of [1,2,3,4,5,6,7]; let index = index"
     class="today"
-    [record]="record.record"
+    [record]="activeRecord"
     [index]="index"
+    [date]="activeDate | adjustedDate:index"
     (newActiveRecord)="setActiveRecord($event, index)"
     >
-    {{ record.record | json }}
   </app-record>
 </mat-card>  
