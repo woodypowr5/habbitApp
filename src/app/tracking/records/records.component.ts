@@ -14,7 +14,7 @@ export class RecordsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.records)
+    console.log(this.records);
   }
 
   setActiveRecord(event, index) {

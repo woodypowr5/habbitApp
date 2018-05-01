@@ -6,6 +6,7 @@
   <app-record *ngFor="let record of records | slice:0:7; let index = index"
     class="today"
     [record]="record.record"
+    [index]="index"
     (newActiveRecord)="setActiveRecord($event, index)"
     >
     {{ record.record | json }}

@@ -6,6 +6,7 @@ import * as moment from 'moment';
 })
 export class CalendarDayPipe implements PipeTransform {
   transform(date: moment.Moment) {
+    console.log(date instanceof moment);
     if (!date) {
       return '';
     }
@@ -13,3 +14,4 @@ export class CalendarDayPipe implements PipeTransform {
     return date.format("DD MMM");
   }
 }
+ 

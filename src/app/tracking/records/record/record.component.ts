@@ -10,6 +10,7 @@ import { Record } from '../../record.model';
 })
 export class RecordComponent implements OnInit {
   @Input() record;
+  @Input() index;
   @Output() newActiveRecord: EventEmitter<Record> = new EventEmitter();
 
   constructor() { }
