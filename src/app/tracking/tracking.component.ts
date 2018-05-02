@@ -7,6 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 import { TrackingService } from './tracking.service';
 import * as moment from 'moment';
+import { Plan } from '../plan/plan.model';
 
 @Component({
   selector: 'app-tracking',
@@ -24,9 +25,12 @@ export class TrackingComponent implements OnInit, OnDestroy {
   };
   private history: History;
   private historySubscription: Subscription;
+  private myPlan: Plan;
+  private planSubscription: Subscription;
 
   constructor(
-    private trackingService: TrackingService) {
+    private trackingService: TrackingService,
+    private planService: PlanService) {
   }
 
   ngOnInit() {
@@ -34,6 +38,9 @@ export class TrackingComponent implements OnInit, OnDestroy {
       this.history = history;
       this.activeRecord = this.history.records[0];
     });
+    this.planService.planChanged.subscribe(
+      plan => this.myPlan = plan
+    );
   }
 
   ngOnDestroy() {
@@ -57,5 +64,6 @@ export class TrackingComponent implements OnInit, OnDestroy {
       };
     }
   }
+
 
 }

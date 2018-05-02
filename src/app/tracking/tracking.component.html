@@ -3,6 +3,9 @@
     (setNewActiveRecord)="setActiveRecord($event)"
 >
 </app-records>
+PLAN: {{ myPlan | json}}
+<br>
+ACTIVE_RECORD: {{ activeRecord | json }}
 <app-record-detail [record]="activeRecord"></app-record-detail>
 
 

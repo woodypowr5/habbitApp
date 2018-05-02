@@ -1,3 +1,4 @@
+import { EmptyRecord } from './../../emptyRecord.class';
 import { AdjustedDatePipe } from './../adjustedDate.pipe';
 import { TrackingDay } from './../../trackingDay.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -21,12 +22,9 @@ export class RecordComponent implements OnInit {
   ngOnInit() {}
 
   setActiveDate(record, index, date) {
-    let today: TrackingDay = {
+    const today: TrackingDay = {
       date: date,
-      record: {
-        date: null,
-        measurements: []
-      }
+      record: new EmptyRecord
     };
     if (record) {
       today.record = record;
@@ -35,6 +33,9 @@ export class RecordComponent implements OnInit {
   }
 
   recordExistsForDay() {
-    return (this.record !== undefined);
+    if (this.record.record) {
+      return (this.record.record.measurements.length > 0);
+    }
+    return false;
   }
 }
