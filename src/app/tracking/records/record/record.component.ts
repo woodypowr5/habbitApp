@@ -10,6 +10,7 @@ import { Record } from '../../record.model';
   styleUrls: ['./record.component.css']
 })
 export class RecordComponent implements OnInit {
+  @Input() isRecord;
   @Input() record;
   @Input() index;
   @Input() date;
@@ -34,6 +35,6 @@ export class RecordComponent implements OnInit {
   }
 
   recordExistsForDay() {
-    // console.log(this.record)
+    return (this.record !== undefined);
   }
 }

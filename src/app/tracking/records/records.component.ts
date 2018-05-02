@@ -32,7 +32,11 @@ export class RecordsComponent implements OnInit {
     this.activeDate = new Date(date + ', ' + new Date().getFullYear());
   }
 
-  getRecordForDate(date){
+  getDateByIndex(index) {
+    return moment(this.activeDate).add(index - 3, 'days');
+  }
+
+  getRecordForDate(date) { // these 2 methods need to be refactored
     let record: Record = {
       date: null,
       measurements: []
@@ -48,6 +52,26 @@ export class RecordsComponent implements OnInit {
       }
     });
     return foundRecord;
+  }
+
+  getRecordForIndex(index) {
+    let record: Record = {
+      date: null,
+      measurements: []
+    };
+    let thisDate = moment(this.activeDate).add(index - 3, 'days');
+    let foundRecord = this.records.filter(thisRecord => {
+      if (
+        (moment(thisRecord.record.date).date() === moment(thisDate).date())
+        && (moment(thisRecord.record.date).month() === moment(thisDate).month())
+        && (moment(thisRecord.record.date).year() === moment(thisDate).year())
+      ) {
+          return thisRecord;
+      }
+    });
+    if (foundRecord.length > 0) {
+      return foundRecord;
+    }
   }
 
 }

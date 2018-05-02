@@ -1,3 +1,14 @@
 .record{
     height: 200px;
 }
+.record-exists img{
+    width: 100px;
+    height: 100px;
+
+}
+.record-exists{
+    background-image: url('/assets/images/greenCheckmark.png');
+    background-size: 100px 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

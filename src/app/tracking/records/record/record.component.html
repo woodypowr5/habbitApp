@@ -3,11 +3,19 @@
   fxLayout="column"
   fxLayoutAlign="space-between"
   (click)="setActiveDate(record, index, date)"
-> {{record}}
-  <h3>{{ date }}</h3> 
+>
+  <h3>{{ date }}</h3>
   <mat-card
-    *ngIf="recordExistsForDay()"
-    class="record"
+    *ngIf="recordExistsForDay(); else no_record"
+    class="record record-exists"
+    fxLayout
+    fxLayoutAlign="space-around"
   >
+    <!-- <img fxFlexAlign="center" src="../../../assets/images/greenCheckmark.png" alt=""> -->
   </mat-card>
+  <ng-template #no_record>
+    <mat-card class="record no-record">
+        No Entry
+    </mat-card>
+  </ng-template>
 </mat-card>  
