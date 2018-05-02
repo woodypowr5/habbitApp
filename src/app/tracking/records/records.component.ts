@@ -19,7 +19,7 @@ export class RecordsComponent implements OnInit {
 
   setActiveRecord(event, index) {
     this.setActiveDate(event.date);
-    const newActiveRecord = this.getRecordForDate(event.date)[0];
+    const newActiveRecord = this.getRecordForDate(event.date);
     if (newActiveRecord) {
       this.setNewActiveRecord.emit(newActiveRecord.record);
     } else {
@@ -36,42 +36,34 @@ export class RecordsComponent implements OnInit {
     return moment(this.activeDate).add(index - 3, 'days');
   }
 
-  getRecordForDate(date) { // these 2 methods need to be refactored
-    let record: Record = {
-      date: null,
-      measurements: []
-    };
-    let thisDate = moment(new Date(date + ', ' + new Date().getFullYear()));
-    let foundRecord = this.records.filter(thisRecord => {
-      if (
-        (moment(thisRecord.record.date).date() === moment(thisDate).date())
-        && (moment(thisRecord.record.date).month() === moment(thisDate).month())
-        && (moment(thisRecord.record.date).year() === moment(thisDate).year())
-      ) {
-          return thisRecord;
-      }
-    });
-    return foundRecord;
+  getRecordForDate(date) {
+    const indexDate = moment(new Date(date + ', ' + new Date().getFullYear()));
+    return this.queryRecordsByDate(indexDate);
   }
 
   getRecordForIndex(index) {
-    let record: Record = {
-      date: null,
-      measurements: []
-    };
-    let thisDate = moment(this.activeDate).add(index - 3, 'days');
-    let foundRecord = this.records.filter(thisRecord => {
-      if (
-        (moment(thisRecord.record.date).date() === moment(thisDate).date())
-        && (moment(thisRecord.record.date).month() === moment(thisDate).month())
-        && (moment(thisRecord.record.date).year() === moment(thisDate).year())
-      ) {
-          return thisRecord;
-      }
-    });
-    if (foundRecord.length > 0) {
-      return foundRecord;
-    }
+    const date = moment(this.activeDate).add(index - 3, 'days');
+    return this.queryRecordsByDate(date);
   }
 
+  queryRecordsByDate(date) {
+    let record: Record = {
+        date: null,
+        measurements: []
+      };
+      const foundRecord = this.records.filter(currentRecord => {
+        if (this.isSameDate(currentRecord.record.date, date)) {
+            return currentRecord;
+        }
+      });
+      if (foundRecord.length > 0) {
+        return foundRecord[0];
+      }
+  }
+
+  isSameDate(date1, date2) {
+    return (moment(date1).date() === moment(date2).date())
+        && (moment(date1).month() === moment(date2).month())
+        && (moment(date1).year() === moment(date2).year());
+  }
 }
