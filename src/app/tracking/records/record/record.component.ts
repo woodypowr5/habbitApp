@@ -30,11 +30,10 @@ export class RecordComponent implements OnInit {
     if (record) {
       today.record = record;
     }
-    console.log(today)
     this.newActiveRecord.emit(today);
   }
 
   recordExistsForDay() {
-    return true;
+    // console.log(this.record)
   }
 }

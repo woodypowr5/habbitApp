@@ -20,10 +20,10 @@ export class RecordsComponent implements OnInit {
   setActiveRecord(event, index) {
     this.setActiveDate(event.date);
     const newActiveRecord = this.getRecordForDate(event.date)[0];
-    console.log(newActiveRecord);
-    // console.log(newActiveRecord.record);
     if (newActiveRecord) {
       this.setNewActiveRecord.emit(newActiveRecord.record);
+    } else {
+      this.setNewActiveRecord.emit(undefined);
     }
     this.activeRecordIndex = index;
   }

@@ -45,11 +45,17 @@ export class TrackingComponent implements OnInit, OnDestroy {
     const convertedDate = moment().add(randomDate, 'day');
     this.mockRecord.date = convertedDate.toDate();
     this.trackingService.addRecordtoHistory(this.mockRecord);
-    console.log(this.mockRecord)
   }
 
   setActiveRecord(record) {
-    this.activeRecord = record;
+    if (record) {
+      this.activeRecord = record;
+    } else {
+      this.activeRecord = {
+        date: null,
+        measurements: []
+      };
+    }
   }
 
 }

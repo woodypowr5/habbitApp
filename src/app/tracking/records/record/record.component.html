@@ -3,9 +3,8 @@
   fxLayout="column"
   fxLayoutAlign="space-between"
   (click)="setActiveDate(record, index, date)"
-> 
+> {{record}}
   <h3>{{ date }}</h3> 
-   <!-- will be something like {{ this.today - (index + 2) }} to show current day in relation to activeDay -->
   <mat-card
     *ngIf="recordExistsForDay()"
     class="record"
