@@ -1,6 +1,6 @@
 export const Constants = {
     colors: {
-        viewing: "orange",
-        editing: "green" 
+        viewing: 'orange',
+        editing: 'green'
     }
 };

@@ -4,7 +4,6 @@ import { TrackingDay } from './../../trackingDay.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Record } from '../../record.model';
 
-
 @Component({
   selector: 'app-record',
   templateUrl: './record.component.html',

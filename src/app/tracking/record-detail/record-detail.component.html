@@ -1,7 +1,23 @@
 <mat-card
   class=""
   fxLayout
-  fxLayoutAlign="space-between"
+  fxLayout="column"
+  fxLayoutAlign="flex-start"
 >
   <h1>{{ activeDate | calendarDay:activeDate }}</h1>
+
+  <app-record-entry
+    *ngIf="record.measurements.length > 0"
+    fxLayout="column"
+    fxLayoutAlign="space-around"
+    >
+  </app-record-entry>
+
+  <app-no-record
+    *ngIf="record.measurements.length === 0"
+    fxLayout="column"
+    fxLayoutAlign="flex-start"
+  >
+
+  </app-no-record>
 </mat-card>  
