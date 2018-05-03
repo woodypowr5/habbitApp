@@ -27,7 +27,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
   private historySubscription: Subscription;
   private myPlan: Plan;
   private planSubscription: Subscription;
-
+  private activeDate;
   constructor(
     private trackingService: TrackingService,
     private planService: PlanService) {
@@ -64,6 +64,11 @@ export class TrackingComponent implements OnInit, OnDestroy {
       };
     }
   }
+
+  setActiveDate(event) {
+    this.activeDate = event; 
+  }
+
 
 
 }

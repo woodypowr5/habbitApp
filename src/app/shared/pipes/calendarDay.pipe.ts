@@ -6,11 +6,10 @@ import * as moment from 'moment';
 })
 export class CalendarDayPipe implements PipeTransform {
   transform(date: moment.Moment) {
-
     if (!date) {
       return '';
     }
     date = moment(date);
-    return date.format('DD MMM"');
+    return date.format('DD MMM');
   }
 }

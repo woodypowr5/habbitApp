@@ -3,6 +3,7 @@
   fxLayout="column"
   fxLayoutAlign="space-between"
   (click)="setActiveDate(record, index, date)"
+  [ngClass]="{'today' : index === 3}"
 >
   <h3>{{ date }}</h3>
   <mat-card

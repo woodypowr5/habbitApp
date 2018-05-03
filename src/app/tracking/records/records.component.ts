@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class RecordsComponent implements OnInit {
   @Input() records;
   @Output() setNewActiveRecord: EventEmitter<Record> = new EventEmitter();
+  @Output() setNewActiveDate: EventEmitter<Date> = new EventEmitter();
   private activeRecordIndex = 3;
   private activeDate: Date = new Date();
 
@@ -31,6 +32,7 @@ export class RecordsComponent implements OnInit {
 
   setActiveDate(date) {
     this.activeDate = new Date(date + ', ' + new Date().getFullYear());
+    this.setNewActiveDate.emit(this.activeDate);
   }
 
   getDateByIndex(index) {

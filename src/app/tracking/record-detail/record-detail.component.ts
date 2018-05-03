@@ -1,3 +1,4 @@
+import { Plan } from './../../plan/plan.model';
 import { Record } from './../record.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RecordDetailComponent implements OnInit {
   @Input() record: Record;
+  @Input() myPlan: Plan;
+  @Input() activeDate: Date;
 
   constructor() { }
 

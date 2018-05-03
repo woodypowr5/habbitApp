@@ -2,3 +2,7 @@ mat-card{
     margin-top: 20px;
     height: 300px;
 }
+h1{
+    width: 100%;
+    text-align: center;
+}

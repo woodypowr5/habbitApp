@@ -1,12 +1,22 @@
 <app-records 
     [records]="history.records"
     (setNewActiveRecord)="setActiveRecord($event)"
+    (setNewActiveDate)="setActiveDate($event)"
 >
 </app-records>
 PLAN: {{ myPlan | json}}
 <br>
 ACTIVE_RECORD: {{ activeRecord | json }}
-<app-record-detail [record]="activeRecord"></app-record-detail>
+<br> 
+ACTIVE_DATE: {{ activeDate }}
+
+
+<app-record-detail 
+    [record]="activeRecord"
+    [myPlan]="myPlan"
+    [activeDate]="activeDate"
+>
+</app-record-detail>
 
 
 <h2>Operations</h2>

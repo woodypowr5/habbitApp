@@ -10,3 +10,6 @@
 .no-record{
     text-align: center;
 }
+.today{
+    border: 1px solid green;   
+}
