@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material.module';
+import { DateService } from './date.service';
 
 @NgModule({
   imports: [
@@ -12,6 +13,9 @@ import { MaterialModule } from '../material.module';
     FormsModule,
     MaterialModule,
     FlexLayoutModule
+  ],
+  providers: [
+    DateService
   ],
   exports: [
     CommonModule,

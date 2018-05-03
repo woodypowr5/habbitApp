@@ -1,3 +1,4 @@
+import { DateService } from './../../shared/date.service';
 import { EmptyRecord } from './../emptyRecord.class';
 import { Record } from './../record.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -15,7 +16,7 @@ export class RecordsComponent implements OnInit {
   private activeRecordIndex = 3;
   private activeDate: Date = new Date();
 
-  constructor() { }
+  constructor(private dateService: DateService) { }
 
   ngOnInit() {}
 
@@ -52,7 +53,7 @@ export class RecordsComponent implements OnInit {
   queryRecordsByDate(date) {
     const record = new EmptyRecord;
     const foundRecord = this.records.filter(currentRecord => {
-      if (this.isSameDate(currentRecord.record.date, date)) {
+      if (this.dateService.isSameDate(currentRecord.record.date, date)) {
           return currentRecord;
       }
     });
@@ -62,9 +63,4 @@ export class RecordsComponent implements OnInit {
     return record;
   }
 
-  isSameDate(date1, date2) {
-    return (moment(date1).date() === moment(date2).date())
-        && (moment(date1).month() === moment(date2).month())
-        && (moment(date1).year() === moment(date2).year());
-  }
 }
