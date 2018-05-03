@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-record-entry',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./record-entry.component.css']
 })
 export class RecordEntryComponent implements OnInit {
-
+  @Input() record;
+  @Input() myPlan;
+  @Input() activeDate;
+  
   constructor() { }
 
   ngOnInit() {

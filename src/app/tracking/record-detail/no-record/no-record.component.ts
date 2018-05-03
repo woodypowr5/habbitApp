@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-no-record',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./no-record.component.css']
 })
 export class NoRecordComponent implements OnInit {
+  @Output() createNewRecord: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  createRecord() {
+    this.createNewRecord.emit(true);
   }
 
 }

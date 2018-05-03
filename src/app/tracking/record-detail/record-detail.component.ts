@@ -11,10 +11,16 @@ export class RecordDetailComponent implements OnInit {
   @Input() record: Record;
   @Input() myPlan: Plan;
   @Input() activeDate: Date;
+  private recordEntryActive = false;
+
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  setRecordEntryActive(newValue) {
+    this.recordEntryActive = newValue;
   }
 }
