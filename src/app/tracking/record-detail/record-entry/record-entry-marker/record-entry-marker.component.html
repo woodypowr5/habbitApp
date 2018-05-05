@@ -1,3 +1,12 @@
 <mat-card>
   <mat-card-title></mat-card-title>
+  <app-entry-form-boolean 
+    *ngIf="marker.dataType === 'boolean'"
+    [value1Name]="'false'"
+    [value2Name]="'true'"
+  >
+  </app-entry-form-boolean>
+  <app-entry-form-discrete *ngIf="marker.dataType === 'discrete'"></app-entry-form-discrete>
+  <app-entry-form-enumerated *ngIf="marker.dataType === 'enumerated'"></app-entry-form-enumerated>
+  <app-entry-form-range *ngIf="marker.dataType === 'range'"></app-entry-form-range>
 </mat-card>

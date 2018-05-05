@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-entry-form-boolean',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entry-form-boolean.component.css']
 })
 export class EntryFormBooleanComponent implements OnInit {
+  @Input() value1Name: string;
+  @Input() value2Name: string;
 
   constructor() { }
 
