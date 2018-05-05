@@ -9,10 +9,14 @@ export class RecordEntryComponent implements OnInit {
   @Input() record;
   @Input() myPlan;
   @Input() activeDate;
-  
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getMeasurementForMarker(marker) {
+    
   }
 
 }

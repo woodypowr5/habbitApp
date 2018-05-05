@@ -1,4 +1,19 @@
-
 <mat-card>
-  
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let marker of myPlan.markers"> 
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            {{ marker.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+            {{ marker.value }}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+            <app-record-entry-marker
+                [marker]="marker"
+                [measurement]="getMeasurementForMarker(marker)"
+            >
+            </app-record-entry-marker>
+        </mat-expansion-panel>
+    </mat-accordion>
 </mat-card>
