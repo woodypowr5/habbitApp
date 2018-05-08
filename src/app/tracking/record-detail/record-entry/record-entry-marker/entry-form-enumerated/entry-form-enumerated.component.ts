@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-entry-form-enumerated',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entry-form-enumerated.component.css']
 })
 export class EntryFormEnumeratedComponent implements OnInit {
+  @Input() values: string[];
 
   constructor() { }
 

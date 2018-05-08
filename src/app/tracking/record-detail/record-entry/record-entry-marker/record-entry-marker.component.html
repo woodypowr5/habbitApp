@@ -6,7 +6,14 @@
     [value2Name]="'true'"
   >
   </app-entry-form-boolean>
-  <app-entry-form-discrete *ngIf="marker.dataType === 'discrete'"></app-entry-form-discrete>
-  <app-entry-form-enumerated *ngIf="marker.dataType === 'enumerated'"></app-entry-form-enumerated>
+  <app-entry-form-discrete 
+    *ngIf="marker.dataType === 'discrete'"
+    >
+  </app-entry-form-discrete>
+  <app-entry-form-enumerated 
+    *ngIf="marker.dataType === 'enumerated'"
+    [values]="['1','2','3','4','5']"
+    >
+  </app-entry-form-enumerated>
   <app-entry-form-range *ngIf="marker.dataType === 'range'"></app-entry-form-range>
 </mat-card>

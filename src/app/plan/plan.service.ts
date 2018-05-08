@@ -30,6 +30,7 @@ export class PlanService {
         })
         .subscribe(
           (plan: Plan[]) => {
+            console.log(plan[0]);
             if (plan.length > 0) {
               this.plan = plan[0];
               if (!plan[0].markers) {
@@ -47,7 +48,7 @@ export class PlanService {
     this.planSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  addMarkerToPlan(marker) {
+  addMarkerToPlan(marker: Marker) {
     this.modifyPlanInDatabase({
       ...this.plan,
       markers: [...this.plan.markers, marker]
@@ -55,7 +56,7 @@ export class PlanService {
     this.planChanged.next(this.plan);
   }
 
-  removeMarkerFromPlan(marker) {
+  removeMarkerFromPlan(marker: Marker) {
     this.modifyPlanInDatabase({
       ...this.plan,
       markers: this.plan.markers.filter(currentMarker => currentMarker.id !== marker.id )

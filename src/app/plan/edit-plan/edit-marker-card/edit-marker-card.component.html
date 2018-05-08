@@ -5,7 +5,6 @@
   *ngIf="!isInPlan"
 >
   <mat-card-title fxLayoutAlign="center">{{ marker.name }}</mat-card-title>
-  <!-- <mat-card-content fxLayoutAlign="center"></mat-card-content> -->
   
   <mat-icon class="marker-icon">
     {{ marker.iconName }}
@@ -17,15 +16,6 @@
     fxLayoutGap="20px"
   >
     <div class="action-container">
-      <!-- <button 
-        class="edit-marker-button remove-marker"
-        [disabled]="!isInPlan"
-        type="button" 
-        mat-raised-button
-        (click)="removeMarkerFromPlan(marker)"
-      >
-        Remove from My Plan
-      </button> -->
       <button 
       class="edit-marker-button add-marker"
         [disabled]="isInPlan" 

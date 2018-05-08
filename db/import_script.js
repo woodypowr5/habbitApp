@@ -6,7 +6,7 @@ admin.initializeApp({
   databaseURL: "https://habbitapp.firebaseio.com"
 });
 
-const data = require("./plans.json");
+const data = require("./markers.json");
 
 data && Object.keys(data).forEach(key => {
   const nestedContent = data[key];

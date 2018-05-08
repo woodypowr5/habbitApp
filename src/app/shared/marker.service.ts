@@ -22,20 +22,9 @@ export class MarkerService {
     this.markerSubscriptions.push(
       this.db
         .collection('availableMarkers')
-        .snapshotChanges()
+        .valueChanges()
         .map(docArray => {
-          return docArray.map(doc => {
-            return {
-              id: doc.payload.doc.id,
-              name: doc.payload.doc.data().name,
-              dataType: doc.payload.doc.data().dataType,
-              values: doc.payload.doc.data().values,
-              min: doc.payload.doc.data().min,
-              max: doc.payload.doc.data().max,
-              iconName: doc.payload.doc.data().iconName,
-              isLoading: false
-            };
-          });
+          return docArray;
         })
         .subscribe(
           (markers: Marker[]) => {
