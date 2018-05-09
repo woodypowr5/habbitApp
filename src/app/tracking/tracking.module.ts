@@ -16,7 +16,6 @@ import { RecordDetailComponent } from './record-detail/record-detail.component';
 import { NoRecordComponent } from './record-detail/no-record/no-record.component';
 import { RecordEntryComponent } from './record-detail/record-entry/record-entry.component';
 import { RecordEntryMarkerComponent } from './record-detail/record-entry/record-entry-marker/record-entry-marker.component';
-import { EntryFormDiscreteComponent } from './record-detail/record-entry/record-entry-marker/entry-form-discrete/entry-form-discrete.component';
 import { EntryFormRangeComponent } from './record-detail/record-entry/record-entry-marker/entry-form-range/entry-form-range.component';
 import { EntryFormEnumeratedComponent } from './record-detail/record-entry/record-entry-marker/entry-form-enumerated/entry-form-enumerated.component';
 import { EntryFormBooleanComponent } from './record-detail/record-entry/record-entry-marker/entry-form-boolean/entry-form-boolean.component';
@@ -32,7 +31,6 @@ import { EntryFormBooleanComponent } from './record-detail/record-entry/record-e
     NoRecordComponent,
     RecordEntryComponent,
     RecordEntryMarkerComponent,
-    EntryFormDiscreteComponent,
     EntryFormRangeComponent,
     EntryFormEnumeratedComponent,
     EntryFormBooleanComponent

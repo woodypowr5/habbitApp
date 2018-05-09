@@ -16,7 +16,9 @@
   <mat-slider 
     min="min"
     max="max"
-    step="delta"
+    [value]="initialValue"
+    [step]="getStepPercentage(min, max, delta)"
+    thumbLabel
   >
   </mat-slider>
   

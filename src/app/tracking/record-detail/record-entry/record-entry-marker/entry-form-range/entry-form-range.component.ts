@@ -12,9 +12,20 @@ export class EntryFormRangeComponent implements OnInit {
   @Input() unit: string;
   @Input() minLabel: string;
   @Input() maxLabel: string;
+  @Input() initialValue: number;
 
   constructor() { }
 
   ngOnInit() {}
+
+  getStepPercentage(min: number, max: number, step: number) {
+    if (step !== undefined) {
+      return step / (max - min) * 100;
+    }
+    return undefined;
+  }
+
+  // need to update to greater than angularMaterial v6.0.0 to add value to slider
+  
 
 }
