@@ -1,3 +1,21 @@
-<p>
-  entry-form-discrete works!
-</p>
+<div class="slider-labels">
+  <div 
+    *ngIf="minLabel"
+    class="slider-label min"
+  >
+    {{ minLabel }}
+  </div>
+  <div 
+    *ngIf="maxLabel"
+    class="slider-label max"
+  >  
+    {{ maxLabel }}
+  </div>
+</div>  
+
+<mat-slider 
+  min="min"
+  max="max"
+  step="delta"
+>
+</mat-slider>

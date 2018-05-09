@@ -11,6 +11,7 @@ export class EntryFormEnumeratedComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
   }
 
 }

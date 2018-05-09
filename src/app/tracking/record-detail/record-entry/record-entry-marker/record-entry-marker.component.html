@@ -2,18 +2,34 @@
   <mat-card-title></mat-card-title>
   <app-entry-form-boolean 
     *ngIf="marker.dataType === 'boolean'"
-    [value1Name]="'false'"
-    [value2Name]="'true'"
+    [value1Name]="marker.value1Name"
+    [value2Name]="marker.value2Name"
   >
   </app-entry-form-boolean>
   <app-entry-form-discrete 
     *ngIf="marker.dataType === 'discrete'"
-    >
+    [min] = "marker.min"
+    [max] = "marker.max"
+    [delta] = "marker.delta"
+    [unit] = "marker.unit"
+    [minLabel] = "marker.minLabel"
+    [maxLabel] = "marker.maxLabel"
+  >
   </app-entry-form-discrete>
   <app-entry-form-enumerated 
     *ngIf="marker.dataType === 'enumerated'"
-    [values]="['1','2','3','4','5']"
-    >
+    [values] = "marker.values"
+  >
   </app-entry-form-enumerated>
-  <app-entry-form-range *ngIf="marker.dataType === 'range'"></app-entry-form-range>
+  <app-entry-form-range 
+    *ngIf="marker.dataType === 'range'"
+    [min] = "marker.min"
+    [max] = "marker.max"
+    [delta] = "marker.delta"
+    [unit] = "marker.unit"
+    [minLabel] = "marker.minLabel"
+    [maxLabel] = "marker.maxLabel"
+  >
+    
+  </app-entry-form-range>
 </mat-card>

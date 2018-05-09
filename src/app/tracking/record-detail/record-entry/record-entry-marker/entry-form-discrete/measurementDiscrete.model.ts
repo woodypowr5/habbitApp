@@ -5,4 +5,6 @@ export interface MeasurementDiscrete extends Measurement {
     max: number;
     delta: number;
     unit: string;
+    minLabel: string;
+    maxLabel: string;
 }

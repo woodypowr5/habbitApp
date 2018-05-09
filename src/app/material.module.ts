@@ -21,7 +21,8 @@ import {
   MatSnackBarModule,
   MatProgressBarModule,
   MatExpansionModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSliderModule,
 } from '@angular/material';
 
 @NgModule({
@@ -47,7 +48,8 @@ import {
     MatSnackBarModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSliderModule
   ],
   exports: [
     MatButtonModule,
@@ -71,7 +73,8 @@ import {
     MatSnackBarModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule {}
