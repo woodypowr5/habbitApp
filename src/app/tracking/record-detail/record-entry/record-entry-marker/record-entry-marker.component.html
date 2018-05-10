@@ -3,26 +3,20 @@
 
   <app-entry-form-boolean 
     *ngIf="marker.dataType === 'boolean'"
-    [value1Name]="marker.value1Name"
-    [value2Name]="marker.value2Name"
+    [marker]="marker"
   >
   </app-entry-form-boolean>
 
   <app-entry-form-enumerated 
     *ngIf="marker.dataType === 'enumerated'"
-    [values] = "marker.values"
+    [marker]="marker"
   >
   </app-entry-form-enumerated>
 
   <app-entry-form-range 
     *ngIf="marker.dataType === 'range'"
-    [min] = "marker.min"
-    [max] = "marker.max"
-    [delta] = "marker.delta"
-    [unit] = "marker.unit"
-    [minLabel] = "marker.minLabel"
-    [maxLabel] = "marker.maxLabel"
-    [initialValue] = "measurementValue"
+    [marker] = "marker"
+    [initialValue] = "measurementPercentValue"
   >
   </app-entry-form-range>
 </mat-card>

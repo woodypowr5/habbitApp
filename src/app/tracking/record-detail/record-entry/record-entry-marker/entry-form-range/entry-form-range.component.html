@@ -1,24 +1,31 @@
 <div class="slider-labels">
-    <div 
-      *ngIf="minLabel"
-      class="slider-label min"
-    >
-      {{ minLabel }}
-    </div>
-    <div 
-      *ngIf="maxLabel"
-      class="slider-label max"
-    >  
-      {{ maxLabel }}
-    </div>
-  </div>  
-  
-  <mat-slider 
-    min="min"
-    max="max"
-    [value]="initialValue"
-    [step]="getStepPercentage(min, max, delta)"
-    thumbLabel
+  <div 
+    *ngIf="minLabel"
+    class="slider-label min"
   >
-  </mat-slider>
+    {{ marker.minLabel }}
+  </div>
+  <div 
+    *ngIf="maxLabel"
+    class="slider-label max"
+  >  
+    {{ marker.maxLabel }}
+  </div>
+</div>  
+
+<mat-slider 
+  min="marker.min"
+  max="marker.max"
+  [value]="initialValue"
+  [step]="getStepPercentage(marker.min, marker.max, marker.delta)"
+  thumbLabel
+>
+</mat-slider>
+
+<button 
+  mat-raised-button
+  (click)="save(currentValue)"
+>
+  Save
+</button>
   

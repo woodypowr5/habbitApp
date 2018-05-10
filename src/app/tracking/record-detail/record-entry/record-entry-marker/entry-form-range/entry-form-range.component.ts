@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Marker } from './../../../../../shared/marker.model';
+import { Measurement } from './../../../../measurement.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-entry-form-range',
@@ -6,13 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./entry-form-range.component.css']
 })
 export class EntryFormRangeComponent implements OnInit {
-  @Input() min: number;
-  @Input() max: number;
-  @Input() delta: number;
-  @Input() unit: string;
-  @Input() minLabel: string;
-  @Input() maxLabel: string;
   @Input() initialValue: number;
+  @Input() marker: Marker;
+  @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
 
   constructor() { }
 
@@ -25,7 +23,15 @@ export class EntryFormRangeComponent implements OnInit {
     return undefined;
   }
 
+  save(value) {
+    const newMeasurement: Measurement = {
+      markerName: this.marker.name,
+      value: value
+    };
+    this.saveMeasurement.emit(newMeasurement);
+  }
+
   // need to update to greater than angularMaterial v6.0.0 to add value to slider
-  
+
 
 }

@@ -1,3 +1,4 @@
+import { Marker } from './../../../../../shared/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,12 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./entry-form-enumerated.component.css']
 })
 export class EntryFormEnumeratedComponent implements OnInit {
-  @Input() values: string[];
+  @Input() marker: Marker;
 
   constructor() { }
 
-  ngOnInit() {
-   
+  ngOnInit() {}
+
+  save(value) {
+
   }
 
 }

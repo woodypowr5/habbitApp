@@ -1,3 +1,4 @@
+import { Marker } from './../../../../../shared/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,12 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./entry-form-boolean.component.css']
 })
 export class EntryFormBooleanComponent implements OnInit {
-  @Input() value1Name: string;
-  @Input() value2Name: string;
+  @Input() marker: Marker;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  save(value) {
+
+  }
 }

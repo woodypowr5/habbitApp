@@ -8,18 +8,22 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RecordEntryMarkerComponent implements OnInit {
   @Input() marker;
   @Input() measurement;
-  measurementValue: number;
+  measurementPercentValue: number;
 
   constructor() { }
 
   ngOnInit() {
     if (this.measurement) {
-      this.measurementValue = this.translateValueToPercentage(this.marker.min, this.marker.max, this.measurement.value);
+      this.measurementPercentValue = this.translateValueToPercentage(this.marker.min, this.marker.max, this.measurement.value);
     }
   }
 
   translateValueToPercentage(min: number, max: number, sliderValue: number) {
     return ((sliderValue - 1) / (max - min)) * 100;
+  }
+
+  save() {
+
   }
 
 }
