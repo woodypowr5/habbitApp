@@ -11,7 +11,7 @@ export class EntryFormRangeComponent implements OnInit {
   @Input() initialValue: number;
   @Input() marker: Marker;
   @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
-
+  sliderValue: number = undefined;
   constructor() { }
 
   ngOnInit() {}
@@ -23,15 +23,13 @@ export class EntryFormRangeComponent implements OnInit {
     return undefined;
   }
 
-  save(value) {
+  save() {
     const newMeasurement: Measurement = {
       markerName: this.marker.name,
-      value: value
+      value: this.sliderValue
     };
     this.saveMeasurement.emit(newMeasurement);
   }
 
   // need to update to greater than angularMaterial v6.0.0 to add value to slider
-
-
 }

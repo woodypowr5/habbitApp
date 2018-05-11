@@ -31,4 +31,14 @@ export class RecordEntryComponent implements OnInit {
     }
     return measurements;
   }
+
+  addOrModifyMeasurement(measurement) {
+    if (measurement.value === undefined) {
+      this.deleteMeasurement(measurement.markerName);
+    }
+  }
+
+  deleteMeasurement(markerName) {
+    
+  }
 }

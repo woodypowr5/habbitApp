@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Marker } from './../../../../shared/marker.model';
+import { Measurement } from './../../../measurement.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-record-entry-marker',
@@ -6,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./record-entry-marker.component.css']
 })
 export class RecordEntryMarkerComponent implements OnInit {
-  @Input() marker;
-  @Input() measurement;
+  @Input() marker: Marker;
+  @Input() measurement: Measurement;
+  @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
   measurementPercentValue: number;
 
   constructor() { }
@@ -22,8 +25,7 @@ export class RecordEntryMarkerComponent implements OnInit {
     return ((sliderValue - 1) / (max - min)) * 100;
   }
 
-  save() {
-
+  saveNewMeasurement(measurement: Measurement) {
+    this.saveMeasurement.emit(measurement);
   }
-
 }

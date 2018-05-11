@@ -18,13 +18,14 @@
   max="marker.max"
   [value]="initialValue"
   [step]="getStepPercentage(marker.min, marker.max, marker.delta)"
+  [(ngModel)]="sliderValue"
   thumbLabel
 >
 </mat-slider>
 
 <button 
   mat-raised-button
-  (click)="save(currentValue)"
+  (click)="save()"
 >
   Save
 </button>

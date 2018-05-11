@@ -17,6 +17,7 @@
     *ngIf="marker.dataType === 'range'"
     [marker] = "marker"
     [initialValue] = "measurementPercentValue"
+    (saveMeasurement)="saveNewMeasurement($event)"
   >
   </app-entry-form-range>
 </mat-card>
