@@ -33,12 +33,15 @@ export class RecordEntryComponent implements OnInit {
   }
 
   addOrModifyMeasurement(measurement) {
+    console.log(measurement)
     if (measurement.value === undefined) {
       this.deleteMeasurement(measurement.markerName);
     }
   }
 
   deleteMeasurement(markerName) {
-    
+    console.log(this.record.measurements);
+    this.record.measurements.filter(measurement => measurement.markerName !== markerName);
+    console.log(this.record.measurements);
   }
 }

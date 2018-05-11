@@ -13,7 +13,7 @@
   </div>
 </div>  
 
-<mat-slider 
+<mat-slider #slider
   min="marker.min"
   max="marker.max"
   [value]="initialValue"
@@ -28,5 +28,12 @@
   (click)="save()"
 >
   Save
+</button>
+
+<button 
+  mat-raised-button
+  (click)="clear(slider)"
+>
+  Clear
 </button>
   

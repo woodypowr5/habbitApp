@@ -11,10 +11,12 @@ export class EntryFormRangeComponent implements OnInit {
   @Input() initialValue: number;
   @Input() marker: Marker;
   @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
-  sliderValue: number = undefined;
+  sliderValue: number;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sliderValue = this.initialValue;
+  }
 
   getStepPercentage(min: number, max: number, step: number) {
     if (step !== undefined) {
@@ -29,6 +31,15 @@ export class EntryFormRangeComponent implements OnInit {
       value: this.sliderValue
     };
     this.saveMeasurement.emit(newMeasurement);
+  }
+
+  clear(sliderRef: any) {
+    sliderRef.writeValue(0);
+    this.sliderValue = undefined;
+  }
+
+  matSliderChange(event) {
+    console.loo(event)
   }
 
   // need to update to greater than angularMaterial v6.0.0 to add value to slider
