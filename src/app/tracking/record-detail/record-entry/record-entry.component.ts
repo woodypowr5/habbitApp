@@ -1,5 +1,8 @@
+import { Plan } from './../../../plan/plan.model';
+import { Record } from './../../record.model';
+import { map } from 'rxjs/operators';
 import { Measurement } from './../../measurement.model';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-record-entry',
@@ -7,9 +10,10 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./record-entry.component.css']
 })
 export class RecordEntryComponent implements OnInit {
-  @Input() record;
-  @Input() myPlan;
-  @Input() activeDate;
+  @Input() record: Record;
+  @Input() myPlan: Plan;
+  @Input() activeDate: Date;
+  @Output() addModifyMeasurement: EventEmitter<Measurement> = new EventEmitter();
   measurements: Measurement[] = [];
 
   constructor() { }
@@ -32,16 +36,7 @@ export class RecordEntryComponent implements OnInit {
     return measurements;
   }
 
-  addOrModifyMeasurement(measurement) {
-    console.log(measurement)
-    if (measurement.value === undefined) {
-      this.deleteMeasurement(measurement.markerName);
-    }
-  }
-
-  deleteMeasurement(markerName) {
-    console.log(this.record.measurements);
-    this.record.measurements.filter(measurement => measurement.markerName !== markerName);
-    console.log(this.record.measurements);
+  addOrModifyMeasurement(measurement: Measurement) {
+    this.addModifyMeasurement.emit(measurement);
   }
 }

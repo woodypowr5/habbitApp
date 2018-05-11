@@ -39,8 +39,7 @@ export class EntryFormRangeComponent implements OnInit {
   }
 
   matSliderChange(event) {
-    console.loo(event)
+
   }
 
-  // need to update to greater than angularMaterial v6.0.0 to add value to slider
 }

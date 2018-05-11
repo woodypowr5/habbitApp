@@ -13,11 +13,11 @@
     [record]="record"
     [myPlan]="myPlan"
     [activeDate]="activeDate"
+    (addModifyMeasurement)="addOrModifyMeasurement($event)"
     >
   </app-record-entry>
 
   <app-no-record
-    
     *ngIf="record.measurements.length === 0 && recordEntryActive === false"
     fxLayout="column"
     fxLayoutAlign="flex-start"

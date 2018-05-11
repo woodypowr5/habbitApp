@@ -1,3 +1,6 @@
+import { TrackingService } from './../tracking.service';
+import { Measurement } from './../measurement.model';
+import { EmptyPlan } from './../../plan/emptyPlan.class';
 import { DateService } from './../../shared/date.service';
 import { Plan } from './../../plan/plan.model';
 import { Record } from './../record.model';
@@ -10,12 +13,11 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class RecordDetailComponent implements OnInit, OnChanges {
   @Input() record: Record;
-  @Input() myPlan: Plan;
+  @Input() myPlan: Plan = new EmptyPlan;
   @Input() activeDate: Date;
   private recordEntryActive = false;
 
-
-  constructor(private dateService: DateService) { }
+  constructor(private dateService: DateService, private trackingService: TrackingService) { }
 
   ngOnInit() {
 
@@ -29,5 +31,9 @@ export class RecordDetailComponent implements OnInit, OnChanges {
 
   setRecordEntryActive(newValue) {
     this.recordEntryActive = newValue;
+  }
+
+  addOrModifyMeasurement(measurement) {
+    this.trackingService.addOrModifyMeasurement(measurement);
   }
 }

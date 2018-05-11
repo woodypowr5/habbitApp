@@ -25,7 +25,12 @@ export class RecordEntryMarkerComponent implements OnInit {
     return ((sliderValue - 1) / (max - min)) * 100;
   }
 
+  translatePercentageToValue(min: number, max: number, percentage: number) {
+    return (percentage * (max - min) / 100) + min;
+  }
+
   saveNewMeasurement(measurement: Measurement) {
+    measurement.value = this.translatePercentageToValue(this.marker.min, this.marker.max, measurement.value)
     this.saveMeasurement.emit(measurement);
   }
 }
