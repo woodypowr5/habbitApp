@@ -19,9 +19,7 @@ export class RecordDetailComponent implements OnInit, OnChanges {
 
   constructor(private dateService: DateService, private trackingService: TrackingService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: any) {
     if (!this.dateService.isSameDate(changes.activeDate.currentValue, changes.activeDate.previousValue)) {
@@ -33,7 +31,40 @@ export class RecordDetailComponent implements OnInit, OnChanges {
     this.recordEntryActive = newValue;
   }
 
-  addOrModifyMeasurement(measurement) {
-    this.trackingService.addOrModifyMeasurement(measurement);
+  addOrModifyMeasurement(measurement: Measurement) {
+    console.log(measurement);
+    let newRecord: Record = this.record;
+    if (measurement.value === undefined) {
+      newRecord.measurements = this.deleteMeasurement(newRecord.measurements, measurement.markerName);
+    } else if (newRecord.measurements.length === 0) {
+      newRecord.measurements.push(measurement);
+    } else {
+      for (let i = 0; i < this.myPlan.markers.length; i++) {
+        console.log(this.myPlan.markers[i].name);
+        console.log(measurement.markerName);
+        if (this.myPlan.markers[i].name === measurement.markerName) {
+          console.log("found 1");
+          for (let j = 0; j < newRecord.measurements.length; j++) {
+            if (newRecord.measurements[j].markerName === measurement.markerName) {
+              console.log("found 2");
+              newRecord.measurements[j] = measurement;
+              break;
+            }
+          }
+          break;
+        }
+      }
+    }
+    this.updateRecord(newRecord);
+  }
+
+  deleteMeasurement(measurements, markerName: string) {
+    return measurements.filter(function (measurement) {
+      return measurement.markerName !== markerName;
+    });
+  }
+
+  updateRecord(record: Record) {
+    this.trackingService.updateRecord(record);
   }
 }

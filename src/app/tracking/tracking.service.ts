@@ -55,29 +55,7 @@ export class TrackingService {
     historyRef.add(newRecord);
   }
 
-  addOrModifyMeasurement(measurement: Measurement) {
-    console.log(measurement);
-  //   // if (measurement.value === undefined) {
-  //   //   this.deleteMeasurement(measurement.markerName);
-  //   // } else {
-  //   //   this.addMeasurement(measurement);
-  //   // }
+  updateRecord(record: Record) {
+    console.log(record);
   }
-
-  // deleteMeasurement(markerName: string) {
-  //   this.record.measurements = this.record.measurements.filter(function (measurement) {
-  //     return measurement.markerName !== markerName;
-  //   });
-  // }
-
-  // addMeasurement(measurement: Measurement) {
-  //   this.record.measurements = this.record.measurements.filter(function (thisMeasurement) {
-  //     return this.myPlan.markers.map(function(marker) {
-  //         if (marker.markerName === thisMeasurement.markerName) {
-  //           thisMeasurement.value = measurement.value;
-  //         }
-  //         return thisMeasurement;
-  //       });
-  //   });
-  // }
 }
