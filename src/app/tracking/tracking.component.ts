@@ -1,3 +1,4 @@
+import { EmptyRecord } from './emptyRecord.class';
 import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
@@ -15,11 +16,9 @@ import { Plan } from '../plan/plan.model';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit, OnDestroy {
-  private activeRecord: Record = {
-    date: null,
-    measurements: []
-  };
+  private activeRecord: Record = new EmptyRecord;
   private mockRecord: Record = {
+    id: null,
     date: new Date(),
     measurements: []
   };
@@ -32,14 +31,15 @@ export class TrackingComponent implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     private planService: PlanService) {
   }
+  private activeId: number = null;
 
   ngOnInit() {
     this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
       this.history = history;
       this.activeRecord = this.history.records[0];
     });
-    this.planService.planChanged.subscribe(
-      plan => this.myPlan = plan
+    this.planService.planChanged.subscribe(plan =>
+       this.myPlan = plan
     );
   }
 
@@ -54,11 +54,12 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.trackingService.addRecordtoHistory(this.mockRecord);
   }
 
-  setActiveRecord(record) {
+  setActiveRecord(record: Record) {
     if (record) {
       this.activeRecord = record;
     } else {
       this.activeRecord = {
+        id: null,
         date: null,
         measurements: []
       };
@@ -66,9 +67,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
   }
 
   setActiveDate(event) {
-    this.activeDate = event; 
+    this.activeDate = event;
   }
-
-
 
 }

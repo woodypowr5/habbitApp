@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntryFormEnumeratedComponent } from './entry-form-enumerated.component';
+// import { EntryFormEnumeratedComponent } from './entry-form-enumerated.component';
 
-describe('EntryFormEnumeratedComponent', () => {
-  let component: EntryFormEnumeratedComponent;
-  let fixture: ComponentFixture<EntryFormEnumeratedComponent>;
+// describe('EntryFormEnumeratedComponent', () => {
+//   let component: EntryFormEnumeratedComponent;
+//   let fixture: ComponentFixture<EntryFormEnumeratedComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EntryFormEnumeratedComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ EntryFormEnumeratedComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EntryFormEnumeratedComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(EntryFormEnumeratedComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

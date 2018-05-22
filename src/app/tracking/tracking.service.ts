@@ -1,3 +1,4 @@
+import { DateService } from './../shared/date.service';
 import { Measurement } from './measurement.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -19,8 +20,18 @@ export class TrackingService {
   };
 
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private dateService: DateService
   ) {}
+
+
+// this.shirts = this.shirtCollection.snapshotChanges().map(actions => {
+//   return actions.map(a => {
+//     const data = a.payload.doc.data() as Shirt;
+//     const id = a.payload.doc.id;
+//     return { id, ...data };
+//   });
+// });
 
   fetchHistoryByUserId(userId: string) {
     this.userId = userId;
@@ -29,12 +40,19 @@ export class TrackingService {
       .collection(`histories`)
       .doc(userId)
       .collection('records')
-      .valueChanges()
+      .snapshotChanges()
       .map(docArray => {
-        return docArray;
+        return docArray.map(doc => {
+          const data = doc.payload.doc.data();
+          const id = doc.payload.doc.id;
+          return { id, ...data };
+        });
       })
       .subscribe(
-        (historyData: Record[]) => {
+        (historyData: any) => {
+        for (let i = 0; i < historyData.length; i++) {
+          historyData[i].id = historyData[i].id;
+        }
           this.history = {
             records: historyData
           };
@@ -51,11 +69,17 @@ export class TrackingService {
     let newRecord = {
           record
     };
-    console.log(newRecord);
     historyRef.add(newRecord);
   }
 
   updateRecord(record: Record) {
-    console.log(record);
+    console.log(record)
+    const newHistory = this.history;
+    const recordRef = this.db
+      .collection('histories')
+      .doc(this.userId)
+      .collection('records')
+      .doc(record.id);
+      recordRef.update(record);
   }
 }

@@ -1,7 +1,7 @@
 export class Marker {
     id: string;
     name: string;
-    dataType: 'numeric | enumerated | discrete | boolean';
+    dataType: string;
     iconName?: string;
     isLoading: boolean;
     min?: number;

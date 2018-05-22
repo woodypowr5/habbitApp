@@ -5,6 +5,7 @@ import { DateService } from './../../shared/date.service';
 import { Plan } from './../../plan/plan.model';
 import { Record } from './../record.model';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { EmptyRecord } from '../emptyRecord.class';
 
 @Component({
   selector: 'app-record-detail',
@@ -12,7 +13,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./record-detail.component.css']
 })
 export class RecordDetailComponent implements OnInit, OnChanges {
-  @Input() record: Record;
+  @Input() record: Record = new EmptyRecord;
   @Input() myPlan: Plan = new EmptyPlan;
   @Input() activeDate: Date;
   private recordEntryActive = false;
@@ -31,22 +32,17 @@ export class RecordDetailComponent implements OnInit, OnChanges {
     this.recordEntryActive = newValue;
   }
 
-  addOrModifyMeasurement(measurement: Measurement) {
-    console.log(measurement);
-    let newRecord: Record = this.record;
+  addOrModifyMeasurement(measurement: Measurement) { // this needs to be refactored
+    const newRecord: Record = this.record; // no id in newRecord ??
     if (measurement.value === undefined) {
       newRecord.measurements = this.deleteMeasurement(newRecord.measurements, measurement.markerName);
     } else if (newRecord.measurements.length === 0) {
       newRecord.measurements.push(measurement);
     } else {
       for (let i = 0; i < this.myPlan.markers.length; i++) {
-        console.log(this.myPlan.markers[i].name);
-        console.log(measurement.markerName);
         if (this.myPlan.markers[i].name === measurement.markerName) {
-          console.log("found 1");
           for (let j = 0; j < newRecord.measurements.length; j++) {
             if (newRecord.measurements[j].markerName === measurement.markerName) {
-              console.log("found 2");
               newRecord.measurements[j] = measurement;
               break;
             }

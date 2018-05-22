@@ -20,8 +20,9 @@ export class RecordComponent implements OnInit {
 
   ngOnInit() {}
 
-  setActiveDate(record, index, date) {
+  setActiveDate(record: Record, index: number, date: Date) {
     const today: TrackingDay = {
+      id: record.id,
       date: date,
       record: new EmptyRecord
     };
@@ -32,8 +33,8 @@ export class RecordComponent implements OnInit {
   }
 
   recordExistsForDay() {
-    if (this.record.record) {
-      return (this.record.record.measurements.length > 0);
+    if (this.record) {
+      return (this.record.measurements.length > 0);
     }
     return false;
   }

@@ -38,8 +38,4 @@ export class EntryFormRangeComponent implements OnInit {
     this.sliderValue = undefined;
   }
 
-  matSliderChange(event) {
-
-  }
-
 }
