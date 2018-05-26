@@ -40,6 +40,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.historySubscription = this.trackingService.historyChanged.subscribe(history => {
       this.history = history;
       this.activeRecord = this.getRecordForDate(this.history.records, this.activeDate);
+      console.log(this.activeRecord);
     });
     this.planService.planChanged.subscribe(plan =>
        this.myPlan = plan

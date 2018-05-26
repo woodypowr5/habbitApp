@@ -12,7 +12,7 @@ import { EmptyRecord } from '../emptyRecord.class';
   templateUrl: './record-detail.component.html',
   styleUrls: ['./record-detail.component.css']
 })
-export class RecordDetailComponent implements OnInit, OnChanges {
+export class RecordDetailComponent implements OnInit {
   @Input() record: Record = new EmptyRecord;
   @Input() myPlan: Plan = new EmptyPlan;
   @Input() activeDate: Date;
@@ -21,12 +21,6 @@ export class RecordDetailComponent implements OnInit, OnChanges {
   constructor(private dateService: DateService, private trackingService: TrackingService) { }
 
   ngOnInit() {}
-
-  ngOnChanges(changes: any) {
-    if (!this.dateService.isSameDate(changes.activeDate.currentValue, changes.activeDate.previousValue)) {
-      this.setRecordEntryActive(false);
-    }
-  }
 
   setRecordEntryActive(newValue) {
     this.recordEntryActive = newValue;

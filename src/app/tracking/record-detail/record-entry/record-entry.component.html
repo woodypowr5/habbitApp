@@ -19,6 +19,8 @@
                 {{ measurements[i].value }} / {{ marker.max }}
                 </mat-panel-description>
             </mat-expansion-panel-header>
+
+        {{ measurements[i] | json }}
             <app-record-entry-marker
                 [marker]="marker"
                 [measurement]="measurements[i]"

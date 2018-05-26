@@ -21,8 +21,9 @@ export class RecordEntryComponent implements OnInit {
   ngOnInit() {
     if (this.record) {
       this.measurements = this.getMeasurementsForMarkers();
-    }
-  }
+    } // need to re-run this each time record is changed
+  } 
+
 
   getMeasurementsForMarkers() {
     const measurements: Measurement[] = [];
