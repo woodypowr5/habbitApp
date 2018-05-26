@@ -25,7 +25,7 @@ export class RecordEntryComponent implements OnInit {
   } 
 
 
-  getMeasurementsForMarkers() : Measurement[] {
+  getMeasurementsForMarkers() {
     const measurements: Measurement[] = [];
     for (let i = 0; i < this.myPlan.markers.length; i++) {
       this.record.measurements.filter(currentMeasurement => {

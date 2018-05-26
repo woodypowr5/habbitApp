@@ -21,11 +21,11 @@ export class RecordEntryMarkerComponent implements OnInit {
     }
   }
 
-  translateValueToPercentage(min: number, max: number, sliderValue: number) : number {
+  translateValueToPercentage(min: number, max: number, sliderValue: number) {
     return ((sliderValue - 1) / (max - min)) * 100;
   }
 
-  translatePercentageToValue(min: number, max: number, percentage: number) : number {
+  translatePercentageToValue(min: number, max: number, percentage: number) {
     return (percentage * (max - min) / 100) + min;
   }
 
