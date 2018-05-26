@@ -4,7 +4,15 @@
   fxLayout="column"
   fxLayoutAlign="flex-start"
 >
+
   <h1>{{ activeDate | calendarDay:activeDate }}</h1>
+
+  RecordDetailComponent:
+  <br>
+  record: {{ record | json }}
+  <br> 
+  activeDate: {{ activeDate }}
+
 
   <app-record-entry
     *ngIf="record.measurements.length > 0 || recordEntryActive === true"

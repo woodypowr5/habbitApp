@@ -1,3 +1,4 @@
+import { DateService } from './../shared/date.service';
 import { EmptyRecord } from './emptyRecord.class';
 import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
@@ -29,14 +30,16 @@ export class TrackingComponent implements OnInit, OnDestroy {
   private activeDate;
   constructor(
     private trackingService: TrackingService,
-    private planService: PlanService) {
+    private planService: PlanService,
+    private dateService: DateService) {
   }
   private activeId: number = null;
 
   ngOnInit() {
-    this.historySubscription = this.trackingService.historyChanged.subscribe((history) => {
+    this.activeDate = this.setActiveDate(moment());  // set activeDate to today
+    this.historySubscription = this.trackingService.historyChanged.subscribe(history => {
       this.history = history;
-      this.activeRecord = this.history.records[0];
+      this.activeRecord = this.getRecordForDate(this.history.records, this.activeDate);
     });
     this.planService.planChanged.subscribe(plan =>
        this.myPlan = plan
@@ -45,6 +48,24 @@ export class TrackingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.historySubscription.unsubscribe();
+  }
+
+  getRecordForDate(records, date) {
+    const indexDate = moment(new Date(date + ', ' + new Date().getFullYear()));
+    return this.queryRecordsByDate(records, indexDate);
+  }
+
+  queryRecordsByDate(records, date) {
+      const record = new EmptyRecord;
+      const foundRecord = records.filter(currentRecord => {
+        if (this.dateService.isSameDate(currentRecord.date, date)) {
+            return currentRecord;
+        }
+      });
+      if (foundRecord.length > 0) {
+        return foundRecord[0];
+      }
+      return record;
   }
 
   addRecord() {
@@ -66,8 +87,8 @@ export class TrackingComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActiveDate(event) {
-    this.activeDate = event;
+  setActiveDate(date) {
+    this.activeDate = date;
   }
 
 }

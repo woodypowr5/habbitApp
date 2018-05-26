@@ -12,26 +12,17 @@ import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 @Injectable()
 export class TrackingService {
   private userId: string = null;
-  historyChanged = new BehaviorSubject<History>(null);
   private fbSubs: Subscription[] = [];
   private historySubscriptions: Subscription[] = [];
   private history: History = {
     records: []
   };
+  historyChanged = new BehaviorSubject<History>(null);
 
   constructor(
     private db: AngularFirestore,
     private dateService: DateService
   ) {}
-
-
-// this.shirts = this.shirtCollection.snapshotChanges().map(actions => {
-//   return actions.map(a => {
-//     const data = a.payload.doc.data() as Shirt;
-//     const id = a.payload.doc.id;
-//     return { id, ...data };
-//   });
-// });
 
   fetchHistoryByUserId(userId: string) {
     this.userId = userId;
@@ -64,7 +55,9 @@ export class TrackingService {
   }
 
   addRecordtoHistory(record) {
-    const historyRef = this.db.collection('histories').doc(this.userId).collection('records');
+    const historyRef = this.db.collection('histories')
+      .doc(this.userId)
+      .collection('records');
     const oldHistory = this.history;
     let newRecord = {
           record

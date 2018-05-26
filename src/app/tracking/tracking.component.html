@@ -5,12 +5,13 @@
     (newActiveId)="setActiveId($event)"
 >
 </app-records>
-<!-- PLAN: {{ myPlan | json}}
+<!-- PLAN: {{ myPlan | json}} -->
+<!-- <br>s -->
+TrackingComponent:
 <br>
 ACTIVE_RECORD: {{ activeRecord | json }}
 <br> 
-ACTIVE_DATE: {{ activeDate }} -->
-
+ACTIVE_DATE: {{ activeDate }}
 
 <app-record-detail 
     [record]="activeRecord"
@@ -19,13 +20,9 @@ ACTIVE_DATE: {{ activeDate }} -->
 >
 </app-record-detail>
 
-
 <h2>Operations</h2>
 
 <h3>Add new record</h3>
 
 <button (click)="addRecord(mockRecord)">Add Record</button>
 
-<div *ngFor="let record of history.records">
-    <!-- {{ record | json }} -->
-</div>
