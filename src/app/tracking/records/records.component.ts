@@ -1,5 +1,4 @@
 import { DateService } from './../../shared/date.service';
-import { EmptyRecord } from './../emptyRecord.class';
 import { Record } from './../record.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
@@ -24,12 +23,17 @@ export class RecordsComponent implements OnInit {
   }
 
   setActiveRecord(event, index) {
+    const emptyRecord =  {
+      id: null,
+      date: null,
+      measurements: []
+    }
     this.setActiveDate(event.date);
     const newActiveRecord = this.getRecordForDate(event.date);
     if (newActiveRecord) {
       this.setNewActiveRecord.emit(newActiveRecord);
     } else {
-      this.setNewActiveRecord.emit(new EmptyRecord);
+      this.setNewActiveRecord.emit(emptyRecord);
     }
     this.activeRecordIndex = index;
   }
@@ -55,7 +59,11 @@ export class RecordsComponent implements OnInit {
   }
 
   queryRecordsByDate(date) {
-    const record = new EmptyRecord;
+    const record =  {
+      id: null,
+      date: null,
+      measurements: []
+    }
     const foundRecord = this.records.filter(currentRecord => {
       if (this.dateService.isSameDate(currentRecord.date, date)) {
           return currentRecord;

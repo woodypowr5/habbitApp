@@ -5,7 +5,6 @@ import { DateService } from './../../shared/date.service';
 import { Plan } from './../../plan/plan.model';
 import { Record } from './../record.model';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { EmptyRecord } from '../emptyRecord.class';
 
 @Component({
   selector: 'app-record-detail',
@@ -13,7 +12,7 @@ import { EmptyRecord } from '../emptyRecord.class';
   styleUrls: ['./record-detail.component.css']
 })
 export class RecordDetailComponent implements OnInit {
-  @Input() record: Record = new EmptyRecord;
+  @Input() record: Record;
   @Input() myPlan: Plan = new EmptyPlan;
   @Input() activeDate: Date;
   private recordEntryActive = false;
@@ -26,10 +25,15 @@ export class RecordDetailComponent implements OnInit {
     this.recordEntryActive = newValue;
   }
 
-  addOrModifyMeasurement(measurement: Measurement) { // this needs to be refactored
-    const newRecord: Record = this.record; // no id in newRecord ??
-    if (measurement.value === undefined) {
+  addOrModifyMeasurement(measurement: Measurement) {
+    const newRecord: Record = this.record;
+    newRecord.date = this.activeDate;
+    if (measurement.value === undefined) { 
       newRecord.measurements = this.deleteMeasurement(newRecord.measurements, measurement.markerName);
+    }  else if (newRecord.id === null) {
+      newRecord.measurements.push(measurement);
+      console.log(newRecord)
+      return this.createRecord(this.record);
     } else if (newRecord.measurements.length === 0) {
       newRecord.measurements.push(measurement);
     } else {
@@ -45,10 +49,10 @@ export class RecordDetailComponent implements OnInit {
         }
       }
     }
-    this.updateRecord(newRecord);
+    return this.updateRecord(newRecord);
   }
 
-  deleteMeasurement(measurements, markerName: string) {
+  deleteMeasurement(measurements, markerName: string) : Measurement[] {
     return measurements.filter(function (measurement) {
       return measurement.markerName !== markerName;
     });
@@ -56,5 +60,9 @@ export class RecordDetailComponent implements OnInit {
 
   updateRecord(record: Record) {
     this.trackingService.updateRecord(record);
+  }
+
+  createRecord(record: Record) {
+    this.trackingService.addRecordtoHistory(record);
   }
 }

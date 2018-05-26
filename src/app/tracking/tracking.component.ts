@@ -1,5 +1,4 @@
 import { DateService } from './../shared/date.service';
-import { EmptyRecord } from './emptyRecord.class';
 import { RecordsComponent } from './records/records.component';
 import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
@@ -17,7 +16,7 @@ import { Plan } from '../plan/plan.model';
   styleUrls: ['./tracking.component.css']
 })
 export class TrackingComponent implements OnInit, OnDestroy {
-  private activeRecord: Record = new EmptyRecord;
+  private activeRecord: Record;
   private mockRecord: Record = {
     id: null,
     date: new Date(),
@@ -36,11 +35,9 @@ export class TrackingComponent implements OnInit, OnDestroy {
   private activeId: number = null;
 
   ngOnInit() {
-    // this.activeDate = this.setActiveDate(moment());  // set activeDate to today
     this.historySubscription = this.trackingService.historyChanged.subscribe(history => {
       this.history = history;
       this.activeRecord = this.getRecordForDate(this.history.records, this.activeDate);
-      console.log(this.activeRecord);
     });
     this.planService.planChanged.subscribe(plan =>
        this.myPlan = plan
@@ -57,7 +54,11 @@ export class TrackingComponent implements OnInit, OnDestroy {
   }
 
   queryRecordsByDate(records, date) {
-      const record = new EmptyRecord;
+      const record: Record = {  
+        id: null,
+        date: null,
+        measurements: []
+      }
       const foundRecord = records.filter(currentRecord => {
         if (this.dateService.isSameDate(currentRecord.date, date)) {
             return currentRecord;

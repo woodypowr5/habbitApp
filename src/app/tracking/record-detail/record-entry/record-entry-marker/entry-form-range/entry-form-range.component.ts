@@ -18,7 +18,7 @@ export class EntryFormRangeComponent implements OnInit {
     this.sliderValue = this.initialValue;
   }
 
-  getStepPercentage(min: number, max: number, step: number) {
+  getStepPercentage(min: number, max: number, step: number) : number {
     if (step !== undefined) {
       return step / (max - min) * 100;
     }
