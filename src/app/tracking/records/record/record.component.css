@@ -90,7 +90,6 @@ h3{
     .prev-day .record, .next-day .record{
         height: 110px;
     }
-
     .prev-prev-day .record, .next-next-day .record{
         height: 100px;
     }
@@ -100,15 +99,12 @@ h3{
     .record{
         height: 120px;
     }
-
     .prev-day .record, .next-day .record{
         height: 110px;
     }
-
     .prev-prev-day .record, .next-next-day .record{
         height: 100px;
     }
-
     .prev-prev-prev-day .record, .next-next-next-day .record{
         height: 90px;
     }

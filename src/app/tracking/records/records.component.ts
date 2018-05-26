@@ -13,14 +13,15 @@ export class RecordsComponent implements OnInit {
   @Input() records;
   @Output() setNewActiveRecord: EventEmitter<Record> = new EventEmitter();
   @Output() setNewActiveDate: EventEmitter<Date> = new EventEmitter();
-  @Output() newActiveId: EventEmitter<number> = new EventEmitter();
   private activeRecordIndex = 3;
-  private activeDate: Date = new Date();
+  private activeDate: Date;
   private activeId: string = null;
 
-  constructor(private dateService: DateService) { }
+  constructor(private dateService: DateService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setActiveDate(new Date());
+  }
 
   setActiveRecord(event, index) {
     this.setActiveDate(event.date);
@@ -50,10 +51,6 @@ export class RecordsComponent implements OnInit {
   getRecordForIndex(index) {
     const date = moment(this.activeDate).add(index - 3, 'days');
     const record: Record = this.queryRecordsByDate(date);
-    if (index === 3) {
-      // this.setActiveId(record.id);
-      // this.newActiveId.emit(record.id);
-    }
     return record;
   }
 
