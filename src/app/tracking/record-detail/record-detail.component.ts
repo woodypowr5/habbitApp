@@ -47,7 +47,6 @@ export class RecordDetailComponent implements OnInit {
         newMeasurements.push(measurement);
         newRecord.measurements = newMeasurements;
     }
-    console.log(newRecord);
     return this.updateRecord(newRecord);
   }
 

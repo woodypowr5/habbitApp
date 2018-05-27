@@ -36,11 +36,9 @@ export class TrackingComponent implements OnInit, OnDestroy {
   private activeId: number = null;
 
   ngOnInit() {
-    // this.activeDate = this.setActiveDate(moment());  // set activeDate to today
     this.historySubscription = this.trackingService.historyChanged.subscribe(history => {
       this.history = history;
       this.activeRecord = this.getRecordForDate(this.history.records, this.activeDate);
-      console.log(this.activeRecord);
     });
     this.planService.planChanged.subscribe(plan =>
        this.myPlan = plan

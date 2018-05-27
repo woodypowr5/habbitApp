@@ -14,16 +14,15 @@ export class RecordEntryComponent implements OnInit {
   @Input() myPlan: Plan;
   @Input() activeDate: Date;
   @Output() addModifyMeasurement: EventEmitter<Measurement> = new EventEmitter();
-  measurements: Measurement[] = [];
+  // measurements: Measurement[] = [];
 
   constructor() { }
 
-  ngOnInit() {
-    if (this.record) {
-      this.measurements = this.getMeasurementsForMarkers();
-    } // need to re-run this each time record is changed
-  } 
+  ngOnInit() {} 
 
+  get measurements() {
+    return this.getMeasurementsForMarkers();
+  }
 
   getMeasurementsForMarkers() {
     const measurements: Measurement[] = [];

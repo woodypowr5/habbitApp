@@ -55,8 +55,7 @@ export class TrackingService {
     );
   }
 
-  addRecordtoHistory(record) {
-    console.log(record);
+  addRecordtoHistory(record: Record) {
     const historyRef = this.db.collection('histories')
       .doc(this.userId)
       .collection('records');
@@ -70,7 +69,6 @@ export class TrackingService {
   }
 
   updateRecord(record: Record) {
-    console.log(record);
     const newHistory = this.history;
     const recordRef = this.db
       .collection('histories')

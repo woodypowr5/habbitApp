@@ -30,7 +30,6 @@ export class PlanService {
         })
         .subscribe(
           (plan: Plan[]) => {
-            console.log(plan[0]);
             if (plan.length > 0) {
               this.plan = plan[0];
               if (!plan[0].markers) {
