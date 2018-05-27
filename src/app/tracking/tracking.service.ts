@@ -79,4 +79,5 @@ export class TrackingService {
       .doc(record.id);
       recordRef.update(record);
   }
+
 }

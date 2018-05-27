@@ -29,7 +29,7 @@ export class RecordDetailComponent implements OnInit {
   addOrModifyMeasurement(measurement: Measurement) { // this needs to be refactored
     let newRecord: Record = this.record; // no id in newRecord ??
     if (measurement.value === undefined) {
-      newRecord.measurements = this.deleteMeasurement(newRecord.measurements, measurement.markerName);
+      this.deleteMeasurement(newRecord, measurement.markerName);
     } else if (newRecord.date === null) {
       newRecord = {
         id: 'AAA',
@@ -41,25 +41,24 @@ export class RecordDetailComponent implements OnInit {
     } else if (newRecord.measurements.length === 0) {
       newRecord.measurements.push(measurement);
     } else {
-      for (let i = 0; i < this.myPlan.markers.length; i++) {
-        if (this.myPlan.markers[i].name === measurement.markerName) {
-          for (let j = 0; j < newRecord.measurements.length; j++) {
-            if (newRecord.measurements[j].markerName === measurement.markerName) {
-              newRecord.measurements[j] = measurement;
-              break;
-            }
-          }
-          break;
-        }
-      }
+        let newMeasurements = newRecord.measurements.filter(currentMeasurement => {
+          return currentMeasurement.markerName !== measurement.markerName;
+        });
+        newMeasurements.push(measurement);
+        newRecord.measurements = newMeasurements;
     }
+    console.log(newRecord);
     return this.updateRecord(newRecord);
   }
 
-  deleteMeasurement(measurements, markerName: string) {
-    return measurements.filter(function (measurement) {
-      return measurement.markerName !== markerName;
-    });
+  deleteMeasurement(record: Record, markerName: string) {
+    const newMeasurements: Measurement[] = record.measurements
+      .filter(function (measurement) {
+        return measurement.markerName !== markerName;
+      }
+    );
+    record.measurements = newMeasurements;
+    return this.updateRecord(record);
   }
 
   updateRecord(record: Record) {
