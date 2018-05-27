@@ -24,7 +24,7 @@ export class TrackingService {
     private dateService: DateService
   ) {}
 
-  fetchHistoryByUserId(userId: string) {
+  fetchHistoryByUserId(userId: string): void {
     this.userId = userId;
     this.historySubscriptions.push(
       this.db
@@ -55,7 +55,7 @@ export class TrackingService {
     );
   }
 
-  addRecordtoHistory(record: Record) {
+  addRecordtoHistory(record: Record): void {
     const historyRef = this.db.collection('histories')
       .doc(this.userId)
       .collection('records');
@@ -68,7 +68,7 @@ export class TrackingService {
     historyRef.add(newRecord);
   }
 
-  updateRecord(record: Record) {
+  updateRecord(record: Record): void {
     const newHistory = this.history;
     const recordRef = this.db
       .collection('histories')

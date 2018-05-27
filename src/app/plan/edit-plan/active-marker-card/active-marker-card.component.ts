@@ -22,20 +22,20 @@ export class ActiveMarkerCardComponent implements OnInit, OnChanges {
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isLoading = false;
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.isLoading = this.marker.isLoading;
   }
 
-  removeMarkerFromPlan(marker) {
+  removeMarkerFromPlan(marker): void {
     this.isLoading = true;
     this.markerRemovedFromPlan.emit(marker);
   }
 
-  openDialog() {
+  openDialog(): void {
     this.dialogRef = this.dialog.open(ActiveMarkerSettingsComponent, {
       data: {
         marker: this.marker,

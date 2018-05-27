@@ -49,12 +49,12 @@ export class TrackingComponent implements OnInit, OnDestroy {
     this.historySubscription.unsubscribe();
   }
 
-  getRecordForDate(records, date) {
+  getRecordForDate(records, date): Record {
     const indexDate = moment(new Date(date + ', ' + new Date().getFullYear()));
     return this.queryRecordsByDate(records, indexDate);
   }
 
-  queryRecordsByDate(records, date) {
+  queryRecordsByDate(records, date): Record {
       const record = new EmptyRecord;
       const foundRecord = records.filter(currentRecord => {
         if (this.dateService.isSameDate(currentRecord.date, date)) {
@@ -67,14 +67,14 @@ export class TrackingComponent implements OnInit, OnDestroy {
       return record;
   }
 
-  addRecord() {
+  addRecord(): void {
     const randomDate = Math.ceil(Math.trunc((Math.random() * 30)));
     const convertedDate = moment().add(randomDate, 'day');
     this.mockRecord.date = convertedDate.toDate();
     this.trackingService.addRecordtoHistory(this.mockRecord);
   }
 
-  setActiveRecord(record: Record) {
+  setActiveRecord(record: Record): void {
     if (record) {
       this.activeRecord = record;
     } else {
@@ -86,7 +86,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActiveDate(date) {
+  setActiveDate(date): void {
     this.activeDate = date;
   }
 

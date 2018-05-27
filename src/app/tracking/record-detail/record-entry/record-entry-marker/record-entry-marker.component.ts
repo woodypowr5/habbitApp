@@ -21,15 +21,15 @@ export class RecordEntryMarkerComponent implements OnInit {
     }
   }
 
-  translateValueToPercentage(min: number, max: number, sliderValue: number) {
+  translateValueToPercentage(min: number, max: number, sliderValue: number): number {
     return ((sliderValue - 1) / (max - min)) * 100;
   }
 
-  translatePercentageToValue(min: number, max: number, percentage: number) {
+  translatePercentageToValue(min: number, max: number, percentage: number): number {
     return (percentage * (max - min) / 100) + min;
   }
 
-  saveNewMeasurement(measurement: Measurement) {
+  saveNewMeasurement(measurement: Measurement): void {
     if (measurement.value !== undefined) {
       measurement.value = this.translatePercentageToValue(this.marker.min, this.marker.max, measurement.value);
     } else {

@@ -36,7 +36,7 @@ export class RecordEntryComponent implements OnInit {
     return measurements;
   }
 
-  addOrModifyMeasurement(measurement: Measurement) {
+  addOrModifyMeasurement(measurement: Measurement): void {
     this.addModifyMeasurement.emit(measurement);
   }
 }

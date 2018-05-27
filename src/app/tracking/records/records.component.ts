@@ -23,7 +23,7 @@ export class RecordsComponent implements OnInit {
     this.setActiveDate(new Date());
   }
 
-  setActiveRecord(event, index) {
+  setActiveRecord(event, index): void {
     this.setActiveDate(event.date);
     const newActiveRecord = this.getRecordForDate(event.date);
     if (newActiveRecord) {
@@ -34,27 +34,27 @@ export class RecordsComponent implements OnInit {
     this.activeRecordIndex = index;
   }
 
-  setActiveDate(date) {
+  setActiveDate(date): void {
     this.activeDate = new Date(date + ', ' + new Date().getFullYear());
     this.setNewActiveDate.emit(this.activeDate);
   }
 
-  getDateByIndex(index) {
+  getDateByIndex(index): moment.Moment {
     return moment(this.activeDate).add(index - 3, 'days');
   }
 
-  getRecordForDate(date) {
+  getRecordForDate(date): Record {
     const indexDate = moment(new Date(date + ', ' + new Date().getFullYear()));
     return this.queryRecordsByDate(indexDate);
   }
 
-  getRecordForIndex(index) {
+  getRecordForIndex(index): Record {
     const date = moment(this.activeDate).add(index - 3, 'days');
     const record: Record = this.queryRecordsByDate(date);
     return record;
   }
 
-  queryRecordsByDate(date) {
+  queryRecordsByDate(date): Record {
     const record = new EmptyRecord;
     const foundRecord = this.records.filter(currentRecord => {
       if (this.dateService.isSameDate(currentRecord.date, date)) {
@@ -68,7 +68,7 @@ export class RecordsComponent implements OnInit {
     return record;
   }
 
-  setActiveId(id: string) {
+  setActiveId(id: string): void {
     this.activeId = id;
   }
 

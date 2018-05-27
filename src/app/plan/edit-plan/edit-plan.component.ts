@@ -27,7 +27,7 @@ export class EditPlanComponent implements OnInit, OnChanges {
     this.inactiveMarkers = this.availableMarkers.filter(marker => !this.isInPlan(marker));
   }
 
-  isInPlan(marker: Marker) {
+  isInPlan(marker: Marker): boolean {
     for (let index = 0; index < this.myPlan.markers.length; index++) {
       if (this.myPlan.markers[index].name === marker.name) {
         return true;
@@ -36,11 +36,11 @@ export class EditPlanComponent implements OnInit, OnChanges {
     return false;
   }
 
-  addMarkerToPlan(marker: Marker) {
+  addMarkerToPlan(marker: Marker): void {
     this.markerAddedToPlanParent.emit(marker);
   }
 
-  removeMarkerFromPlan(marker: Marker) {
+  removeMarkerFromPlan(marker: Marker): void {
     this.markerRemovedFromPlanParent.emit(marker);
   }
 }

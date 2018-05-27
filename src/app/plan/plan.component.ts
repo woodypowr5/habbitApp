@@ -31,13 +31,13 @@ export class PlanComponent implements OnInit {
     this.fetchAvailableMarkers();
   }
 
-  fetchMyPlan() {
+  fetchMyPlan(): void {
     this.planService.planChanged.subscribe(
       plan => this.myPlan = plan
     );
   }
 
-  fetchAvailableMarkers() {
+  fetchAvailableMarkers(): void {
     this.availableMarkerSubscription = this.markerService.availableMarkersChanged.subscribe(
       markers => {
         if (markers !== null) {
@@ -46,12 +46,12 @@ export class PlanComponent implements OnInit {
     });
   }
 
-  addMarkerToPlan(marker) {
+  addMarkerToPlan(marker): void {
     marker.isLoading = false;
     this.planService.addMarkerToPlan(marker);
   }
 
-  removeMarkerFromPlan(marker) {
+  removeMarkerFromPlan(marker): void {
     marker.isLoading = false;
     this.planService.removeMarkerFromPlan(marker);
   }

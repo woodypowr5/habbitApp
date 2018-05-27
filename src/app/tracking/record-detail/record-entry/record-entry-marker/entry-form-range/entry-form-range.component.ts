@@ -18,14 +18,14 @@ export class EntryFormRangeComponent implements OnInit {
     this.sliderValue = this.initialValue;
   }
 
-  getStepPercentage(min: number, max: number, step: number) {
+  getStepPercentage(min: number, max: number, step: number): number {
     if (step !== undefined) {
       return step / (max - min) * 100;
     }
     return undefined;
   }
 
-  save() {
+  save(): void {
     const newMeasurement: Measurement = {
       markerName: this.marker.name,
       value: this.sliderValue
@@ -33,7 +33,7 @@ export class EntryFormRangeComponent implements OnInit {
     this.saveMeasurement.emit(newMeasurement);
   }
 
-  clear(sliderRef: any) {
+  clear(sliderRef: any): void {
     sliderRef.writeValue(0);
     this.sliderValue = undefined;
   }

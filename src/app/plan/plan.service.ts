@@ -19,7 +19,7 @@ export class PlanService {
 
   constructor(private db: AngularFirestore) {}
 
-  fetchPlanByUserId(userId: string) {
+  fetchPlanByUserId(userId: string): void {
     this.userId = userId;
     this.planSubscriptions.push(
       this.db
@@ -43,11 +43,11 @@ export class PlanService {
     );
   }
 
-  cancelSubscriptions() {
+  cancelSubscriptions(): void {
     this.planSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  addMarkerToPlan(marker: Marker) {
+  addMarkerToPlan(marker: Marker): void {
     this.modifyPlanInDatabase({
       ...this.plan,
       markers: [...this.plan.markers, marker]
@@ -55,7 +55,7 @@ export class PlanService {
     this.planChanged.next(this.plan);
   }
 
-  removeMarkerFromPlan(marker: Marker) {
+  removeMarkerFromPlan(marker: Marker): void {
     this.modifyPlanInDatabase({
       ...this.plan,
       markers: this.plan.markers.filter(currentMarker => currentMarker.id !== marker.id )
@@ -63,11 +63,11 @@ export class PlanService {
     this.planChanged.next(this.plan);
   }
 
-  private addDataToDatabase(newPlan: Plan) {
+  private addDataToDatabase(newPlan: Plan): void {
     this.db.collection('plans').add(newPlan);
   }
 
-  private modifyPlanInDatabase(newPlan: Plan) {
+  private modifyPlanInDatabase(newPlan: Plan): void {
     const planRef = this.db.collection('plans').doc(this.userId);
     const setWithMerge = planRef.set({
       markers: newPlan.markers

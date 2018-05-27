@@ -32,7 +32,7 @@ export class RecordDetailComponent implements OnInit {
       this.deleteMeasurement(newRecord, measurement.markerName);
     } else if (newRecord.date === null) {
       newRecord = {
-        id: 'AAA',
+        id: null,
         date: this.activeDate,
         measurements: [measurement]
       };
@@ -50,21 +50,21 @@ export class RecordDetailComponent implements OnInit {
     return this.updateRecord(newRecord);
   }
 
-  deleteMeasurement(record: Record, markerName: string) {
+  deleteMeasurement(record: Record, markerName: string): void {
     const newMeasurements: Measurement[] = record.measurements
       .filter(function (measurement) {
         return measurement.markerName !== markerName;
       }
     );
     record.measurements = newMeasurements;
-    return this.updateRecord(record);
+    this.updateRecord(record);
   }
 
-  updateRecord(record: Record) {
+  updateRecord(record: Record): void {
     this.trackingService.updateRecord(record);
   }
 
-  createRecord(record: Record) {
+  createRecord(record: Record): void {
     this.trackingService.addRecordtoHistory(record);
   }
 

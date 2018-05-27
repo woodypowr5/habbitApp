@@ -28,7 +28,7 @@ export class EditMarkerCardComponent implements OnInit, OnChanges {
     this.isLoading = this.marker.isLoading;
   }
 
-  addMarkerToPlan(marker: Marker) {
+  addMarkerToPlan(marker: Marker): void {
     this.isLoading = true;
     this.markerAddedToPlan.emit(marker);
   }

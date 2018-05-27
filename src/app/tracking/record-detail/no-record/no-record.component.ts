@@ -14,7 +14,7 @@ export class NoRecordComponent implements OnInit {
 
   }
 
-  createRecord() {
+  createRecord(): void {
     this.createNewRecord.emit(true);
   }
 
