@@ -34,15 +34,16 @@ export class TrackingService {
       .snapshotChanges()
       .map(docArray => {
         return docArray.map(doc => {
+          const key = doc.payload.doc.id;
           const data = doc.payload.doc.data();
           const id = doc.payload.doc.id;
-          return { id, ...data };
+          return { id, key, ...data };
         });
       })
       .subscribe(
         (historyData: any) => {
         for (let i = 0; i < historyData.length; i++) {
-          historyData[i].id = historyData[i].id;
+          historyData[i].id = historyData[i].key;
         }
           this.history = {
             records: historyData
@@ -55,18 +56,21 @@ export class TrackingService {
   }
 
   addRecordtoHistory(record) {
+    console.log(record);
     const historyRef = this.db.collection('histories')
       .doc(this.userId)
       .collection('records');
     const oldHistory = this.history;
-    let newRecord = {
-          record
+    const newRecord = {
+      id: record.id,
+      date: record.date,
+      measurements: record.measurements
     };
     historyRef.add(newRecord);
   }
 
   updateRecord(record: Record) {
-    console.log(record)
+    console.log(record);
     const newHistory = this.history;
     const recordRef = this.db
       .collection('histories')

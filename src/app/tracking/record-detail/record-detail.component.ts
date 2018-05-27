@@ -27,9 +27,17 @@ export class RecordDetailComponent implements OnInit {
   }
 
   addOrModifyMeasurement(measurement: Measurement) { // this needs to be refactored
-    const newRecord: Record = this.record; // no id in newRecord ??
+    let newRecord: Record = this.record; // no id in newRecord ??
     if (measurement.value === undefined) {
       newRecord.measurements = this.deleteMeasurement(newRecord.measurements, measurement.markerName);
+    } else if (newRecord.date === null) {
+      newRecord = {
+        id: 'AAA',
+        date: this.activeDate,
+        measurements: [measurement]
+      };
+      newRecord.measurements.push(measurement);
+      return this.createRecord(newRecord);
     } else if (newRecord.measurements.length === 0) {
       newRecord.measurements.push(measurement);
     } else {
@@ -45,7 +53,7 @@ export class RecordDetailComponent implements OnInit {
         }
       }
     }
-    this.updateRecord(newRecord);
+    return this.updateRecord(newRecord);
   }
 
   deleteMeasurement(measurements, markerName: string) {
@@ -57,4 +65,9 @@ export class RecordDetailComponent implements OnInit {
   updateRecord(record: Record) {
     this.trackingService.updateRecord(record);
   }
+
+  createRecord(record: Record) {
+    this.trackingService.addRecordtoHistory(record);
+  }
+
 }
