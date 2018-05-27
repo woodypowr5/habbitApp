@@ -5,11 +5,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { TrendsComponent } from './trends.component';
 import { TrendsRoutingModule } from './trends-routing.module';
-import { SharedModule } from '../shared/shared.module'; 
+import { SharedModule } from '../shared/shared.module';
+import { TrendsSummaryComponent } from './trends-summary/trends-summary.component';
+import { TrendsDailyComponent } from './trends-daily/trends-daily.component';
+import { TrendsLinkedComponent } from './trends-linked/trends-linked.component'; 
 
 @NgModule({
     declarations: [
-        TrendsComponent
+        TrendsComponent,
+        TrendsSummaryComponent,
+        TrendsDailyComponent,
+        TrendsLinkedComponent
     ],
     imports: [
         SharedModule,
