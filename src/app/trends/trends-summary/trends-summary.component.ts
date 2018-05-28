@@ -13,13 +13,29 @@ export class TrendsSummaryComponent implements OnInit {
   // private datapoints: Datapoint[] = [];
   private dateRange: [Date, Date] = [null, null];
   private includeMarkers: [string, string] = ['Overall Mood', 'Diet Quality'];
-
+  private datapoints: Datapoint[] = [];
   constructor(private chartDataService: ChartDataService) {}
 
-  get datapoints(): Datapoint[] { // this may be too slow
-    return this.chartDataService.formatToDatapoints(this.records, this.includeMarkers, this.dateRange);
+  // get datapoints(): Datapoint[] { // this may be too slow
+  //   return this.chartDataService.formatToDatapoints(this.records, this.includeMarkers, this.dateRange);
+  // }
+
+  ngOnInit() {
+    this.datapoints =  this.formatData(
+      this.records,
+      [
+        this.includeMarkers[0],
+        this.includeMarkers[1]
+      ],
+      [
+        this.dateRange[0],
+        this.dateRange[1]
+      ]
+    );
   }
 
-  ngOnInit() {}
+  formatData(records: Record[], includeMarkers: [string, string], dateRange: [Date, Date]): Datapoint[] {
+    return this.chartDataService.formatToDatapoints(records, includeMarkers, dateRange);
+  }
 
 }
