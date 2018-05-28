@@ -1,6 +1,10 @@
+History: {{ history | json }}
 <mat-tab-group>
   <mat-tab label="Summary">
-    <app-trends-summary></app-trends-summary>
+    <app-trends-summary
+      [records]="records"
+    >
+  </app-trends-summary>
   </mat-tab>
   <mat-tab label="Daily">
     <app-trends-daily></app-trends-daily>

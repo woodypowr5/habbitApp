@@ -8,7 +8,7 @@ import { TrendsRoutingModule } from './trends-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TrendsSummaryComponent } from './trends-summary/trends-summary.component';
 import { TrendsDailyComponent } from './trends-daily/trends-daily.component';
-import { TrendsLinkedComponent } from './trends-linked/trends-linked.component'; 
+import { TrendsLinkedComponent } from './trends-linked/trends-linked.component';
 
 @NgModule({
     declarations: [
