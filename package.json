@@ -29,6 +29,7 @@
     "@types/es6-shim": "^0.31.36",
     "@types/lodash": "^4.14.107",
     "angularfire2": "^5.0.0-rc.4",
+    "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "firebase": "^4.8.2",
     "firebase-admin": "^5.10.0",

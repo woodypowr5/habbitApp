@@ -1,2 +1,8 @@
-TrendsSummaryComponen
-datapoints: {{ datapoints | json }}
+<!-- TrendsSummaryComponen
+datapoints: {{ datapoints | json }} -->
+
+<!-- <canvas #mycanvas width="400" height="400"></canvas> -->
+
+<div [hidden]="!chart">
+    <canvas #canvas id="canvas"></canvas>
+</div>
