@@ -13,20 +13,16 @@ import * as scatterChart from './scatter.chart';
 })
 export class TrendsSummaryComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') canvas: ElementRef;
-  public context: CanvasRenderingContext2D;
   @Input() records: Record[];
+  public context: CanvasRenderingContext2D;
   private dateRange: [Date, Date] = [null, null];
   private includeMarkers: [string, string] = ['Overall Mood', 'Diet Quality'];
   private datapoints: Datapoint[] = [];
-  chart: any = [];
-  // canvas: any;
+  private chart: any = [];
+
   constructor(private chartDataService: ChartDataService, private el: ElementRef, private renderer: Renderer) {
     this.canvas = el.nativeElement.children;
-    console.log(this.canvas[0]);
   }
-  // get datapoints(): Datapoint[] { // this may be too slow
-  //   return this.chartDataService.formatToDatapoints(this.records, this.includeMarkers, this.dateRange);
-  // }
 
   ngOnInit() {
     Chart.defaults.global.elements.point.radius = 10;
@@ -42,65 +38,17 @@ export class TrendsSummaryComponent implements OnInit, AfterViewInit {
         this.dateRange[1]
       ]
     );
-
   }
 
   ngAfterViewInit(): void {
+    const chart =  new scatterChart.ScatterChart;
+    const data = this.chartDataService.formatToDatapoints(this.records, this.includeMarkers, this.dateRange);
     this.context = (<HTMLCanvasElement>this.canvas.nativeElement).getContext('2d');
-    console.log(this.context);
-    this.chart =  new Chart('canvas', {
-      type: 'scatter',
-      data: {
-          datasets: [{
-              label: 'Scatter Dataset',
-              data: this.chartDataService.formatToDatapoints(this.records, this.includeMarkers, this.dateRange);
-      }],
-      options: {
-          scales: {
-              xAxes: [{
-                  type: 'linear',
-                  position: 'bottom'
-              }]
-          }
-      }
-  });
-    // this.chart = new Chart('canvas', {
-    //   type: 'scatter',
-    //   data: {
-    //       datasets: [{
-    //           label: 'Scatter Dataset',
-    //           data: [{
-    //               x: -10,
-    //               y: 0
-    //           }, {
-    //               x: 0,
-    //               y: 10
-    //           }, {
-    //               x: 10,
-    //               y: 5
-    //           }]
-    //       }]
-    //   },
-    //   options: {
-    //       scales: {
-    //           xAxes: [{
-    //               type: 'linear',
-    //               position: 'bottom'
-    //           }]
-    //       }
-    //   }
-    // });
+    this.chart =  new Chart(this.context, chart.getChartData(data));
   }
 
   formatData(records: Record[], includeMarkers: [string, string], dateRange: [Date, Date]): Datapoint[] {
     return this.chartDataService.formatToDatapoints(records, includeMarkers, dateRange);
   }
-
-  createChart(context: any) {
-    this.chart = new scatterChart.ScatterChart;
-    this.chart.createChart(this.context);
-  }
-
-
-
 }
+ 

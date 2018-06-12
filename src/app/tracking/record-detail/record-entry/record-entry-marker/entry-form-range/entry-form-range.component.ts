@@ -1,3 +1,4 @@
+import { CalculationService } from './../../../../../shared/calculation.service';
 import { Marker } from './../../../../../shared/marker.model';
 import { Measurement } from './../../../../measurement.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -12,17 +13,15 @@ export class EntryFormRangeComponent implements OnInit {
   @Input() marker: Marker;
   @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
   sliderValue: number;
-  constructor() { }
+
+  constructor(private calculationService: CalculationService) { }
 
   ngOnInit() {
     this.sliderValue = this.initialValue;
   }
 
   getStepPercentage(min: number, max: number, step: number): number {
-    if (step !== undefined) {
-      return step / (max - min) * 100;
-    }
-    return undefined;
+    return this.calculationService.getDiscreteStepPercentage(min, max, step);
   }
 
   save(): void {

@@ -1,23 +1,12 @@
-import * as chart from 'chart.js';
-
-export class ScatterChart  {
-    createChart(ctx: any) {
-        return new chart.Chart('canvas', {
+export class ScatterChart {
+    getChartData(data) {
+        return {
             type: 'scatter',
             data: {
                 datasets: [{
                     label: 'Scatter Dataset',
-                    data: [{
-                        x: -10,
-                        y: 0
-                    }, {
-                        x: 0,
-                        y: 10
-                    }, {
-                        x: 10,
-                        y: 5
-                    }]
-                }]
+                    data: data
+                }],
             },
             options: {
                 scales: {
@@ -27,6 +16,7 @@ export class ScatterChart  {
                     }]
                 }
             }
-        });
+        };
     }
 }
+

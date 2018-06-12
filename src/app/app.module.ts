@@ -1,3 +1,4 @@
+import { CalculationService } from './shared/calculation.service';
 import { ChartDataService } from './trends/chart-data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -53,6 +54,7 @@ import { RecordsComponent } from './tracking/records/records.component';
     PlanService,
     ChartDataService,
     AngularFireDatabaseProvider,
+    CalculationService,
     UIService],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,10 @@
+import { CalculationService } from './../../shared/calculation.service';
 import { DateService } from './../../shared/date.service';
 import { EmptyRecord } from './../emptyRecord.class';
 import { Record } from './../record.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
+import { Constants } from '../../shared/constants';
 
 @Component({
   selector: 'app-records',
@@ -13,14 +15,19 @@ export class RecordsComponent implements OnInit {
   @Input() records;
   @Output() setNewActiveRecord: EventEmitter<Record> = new EventEmitter();
   @Output() setNewActiveDate: EventEmitter<Date> = new EventEmitter();
-  private activeRecordIndex = 3;
+  private numVisibleRecords = Constants.numVisibleDailyRecords;
+  private activeRecordIndex: number;
   private activeDate: Date;
   private activeId: string = null;
 
-  constructor(private dateService: DateService) {}
+  constructor(
+    private dateService: DateService,
+    private calculationService: CalculationService
+  ) {}
 
   ngOnInit() {
     this.setActiveDate(new Date());
+    this.activeRecordIndex = this.calculationService.getMedianIndexFromLength(this.numVisibleRecords);
   }
 
   setActiveRecord(event, index): void {
@@ -40,7 +47,7 @@ export class RecordsComponent implements OnInit {
   }
 
   getDateByIndex(index): moment.Moment {
-    return moment(this.activeDate).add(index - 3, 'days');
+    return moment(this.activeDate).add(index - this.calculationService.getMedianIndexFromLength(this.numVisibleRecords), 'days');
   }
 
   getRecordForDate(date): Record {
@@ -49,7 +56,7 @@ export class RecordsComponent implements OnInit {
   }
 
   getRecordForIndex(index): Record {
-    const date = moment(this.activeDate).add(index - 3, 'days');
+    const date = moment(this.activeDate).add(index - this.calculationService.getMedianIndexFromLength(this.numVisibleRecords), 'days');
     const record: Record = this.queryRecordsByDate(date);
     return record;
   }

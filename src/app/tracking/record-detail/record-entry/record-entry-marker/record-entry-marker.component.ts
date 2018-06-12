@@ -1,3 +1,4 @@
+import { CalculationService } from './../../../../shared/calculation.service';
 import { Marker } from './../../../../shared/marker.model';
 import { Measurement } from './../../../measurement.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -13,11 +14,15 @@ export class RecordEntryMarkerComponent implements OnInit {
   @Output() saveMeasurement: EventEmitter<Measurement> = new EventEmitter();
   measurementPercentValue: number;
 
-  constructor() { }
+  constructor(private calculationService: CalculationService) { }
 
   ngOnInit() {
     if (this.measurement) {
-      this.measurementPercentValue = this.translateValueToPercentage(this.marker.min, this.marker.max, this.measurement.value);
+      this.measurementPercentValue = this.calculationService.translateValueToPercentage(
+        this.marker.min,
+        this.marker.max,
+        this.measurement.value
+      );
     }
   }
 
@@ -31,7 +36,11 @@ export class RecordEntryMarkerComponent implements OnInit {
 
   saveNewMeasurement(measurement: Measurement): void {
     if (measurement.value !== undefined) {
-      measurement.value = this.translatePercentageToValue(this.marker.min, this.marker.max, measurement.value);
+      measurement.value = this.calculationService.translatePercentageToValue(
+        this.marker.min,
+        this.marker.max,
+        measurement.value
+      );
     } else {
       measurement.value = undefined;
     }
