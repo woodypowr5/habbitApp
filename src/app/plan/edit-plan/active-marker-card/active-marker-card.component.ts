@@ -1,10 +1,8 @@
+import { Marker } from './../../../shared/types/marker.model';
 import { UIService } from './../../../shared/ui.service';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { ActiveMarkerSettingsComponent } from './active-marker-settings/active-marker-settings.component';
-
-import { Marker } from '../../../shared/marker.model';
 import { Plan } from './../../plan.model';
 
 @Component({

@@ -1,11 +1,11 @@
+import { Marker } from './../shared/types/marker.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription } from 'rxjs/subscription';
 import { Observable } from 'rxjs/observable';
 import { BehaviorSubject } from 'rxjs';
-
 import { Plan } from './plan.model';
-import { Marker } from './../shared/marker.model';
+
 
 @Injectable()
 export class PlanService {

@@ -1,4 +1,4 @@
-import { Measurement } from './../../../../measurement.model';
+import { Measurement } from './../../../../../shared/types/measurement.model';
 
 export interface MeasurementBoolean extends Measurement {
     value1Name: string;

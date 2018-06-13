@@ -5,3 +5,4 @@ export interface TrackingDay {
     date: Date;
     record: Record;
 }
+

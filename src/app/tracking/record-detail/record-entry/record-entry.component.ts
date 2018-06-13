@@ -1,7 +1,7 @@
+import { Measurement } from './../../../shared/types/measurement.model';
+import { Record } from './../../../shared/types/record.model';
 import { Plan } from './../../../plan/plan.model';
-import { Record } from './../../record.model';
 import { map } from 'rxjs/operators';
-import { Measurement } from './../../measurement.model';
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -14,11 +14,10 @@ export class RecordEntryComponent implements OnInit {
   @Input() myPlan: Plan;
   @Input() activeDate: Date;
   @Output() addModifyMeasurement: EventEmitter<Measurement> = new EventEmitter();
-  // measurements: Measurement[] = [];
 
   constructor() { }
 
-  ngOnInit() {} 
+  ngOnInit() {}
 
   get measurements() {
     return this.getMeasurementsForMarkers();

@@ -1,8 +1,8 @@
-import { Measurement } from './../tracking/measurement.model';
+import { Datapoint } from './../shared/types/datapoint.model';
+import { Measurement } from './../shared/types/measurement.model';
+import { Record } from './../shared/types/record.model';
 import { map } from 'rxjs/operators';
-import { Datapoint } from './datapoint.model';
 import { Injectable } from '@angular/core';
-import { Record } from '../tracking/record.model';
 
 @Injectable()
 export class ChartDataService {

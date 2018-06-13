@@ -1,4 +1,4 @@
-import { Record } from './record.model';
+import { Record } from './../shared/types/record.model';
 
 export class EmptyRecord implements Record {
     id = null;

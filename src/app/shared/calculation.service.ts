@@ -5,15 +5,15 @@ export class CalculationService {
 
     constructor() {}
 
-    getMedianIndexFromArray(values: any[]) {
+    getMedianIndexFromArray(values: any[]): number {
         return Math.floor(values.length / 2);
     }
 
-    getMedianIndexFromLength(arrayLength: number) {
+    getMedianIndexFromLength(arrayLength: number): number {
         return Math.floor(arrayLength / 2);
     }
 
-    getMedianValue(values: any[]) {
+    getMedianValue(values: any[]): any {
         return values[Math.floor(values.length / 2)];
     }
 

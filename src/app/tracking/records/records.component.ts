@@ -1,7 +1,7 @@
+import { Record } from './../../shared/types/record.model';
 import { CalculationService } from './../../shared/calculation.service';
 import { DateService } from './../../shared/date.service';
 import { EmptyRecord } from './../emptyRecord.class';
-import { Record } from './../record.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 import { Constants } from '../../shared/constants';
@@ -51,14 +51,13 @@ export class RecordsComponent implements OnInit {
   }
 
   getRecordForDate(date): Record {
-    const indexDate = moment(new Date(date + ', ' + new Date().getFullYear()));
-    return this.queryRecordsByDate(indexDate);
+    const dateWithYear = moment(new Date(date + ', ' + new Date().getFullYear()));
+    return this.queryRecordsByDate(dateWithYear);
   }
 
   getRecordForIndex(index): Record {
     const date = moment(this.activeDate).add(index - this.calculationService.getMedianIndexFromLength(this.numVisibleRecords), 'days');
-    const record: Record = this.queryRecordsByDate(date);
-    return record;
+    return this.queryRecordsByDate(date);
   }
 
   queryRecordsByDate(date): Record {

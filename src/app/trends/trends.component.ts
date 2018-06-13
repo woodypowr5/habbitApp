@@ -1,8 +1,8 @@
-import { History } from './../tracking/history.model';
+import { Record } from './../shared/types/record.model';
+import { History } from './../shared/types/history.model';
 import { Subscription } from 'rxjs/subscription';
 import { TrackingService } from './../tracking/tracking.service';
 import { Component, OnInit } from '@angular/core';
-import { Record } from '../tracking/record.model';
 
 @Component({
   selector: 'app-trends',

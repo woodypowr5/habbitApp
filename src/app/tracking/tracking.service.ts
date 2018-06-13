@@ -1,10 +1,10 @@
+import { Measurement } from './../shared/types/measurement.model';
+import { Record } from './../shared/types/record.model';
+import { History } from './../shared/types/history.model';
 import { DateService } from './../shared/date.service';
-import { Measurement } from './measurement.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subscription, Observable, BehaviorSubject } from 'rxjs';
-import { Record } from './record.model';
-import { History } from './history.model';
 import { UserData } from './../auth/userData.model';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 

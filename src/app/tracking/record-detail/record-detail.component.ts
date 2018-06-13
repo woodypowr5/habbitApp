@@ -1,9 +1,9 @@
+import { Measurement } from './../../shared/types/measurement.model';
+import { Record } from './../../shared/types/record.model';
 import { TrackingService } from './../tracking.service';
-import { Measurement } from './../measurement.model';
 import { EmptyPlan } from './../../plan/emptyPlan.class';
 import { DateService } from './../../shared/date.service';
 import { Plan } from './../../plan/plan.model';
-import { Record } from './../record.model';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { EmptyRecord } from '../emptyRecord.class';
 
@@ -27,7 +27,7 @@ export class RecordDetailComponent implements OnInit {
   }
 
   addOrModifyMeasurement(measurement: Measurement) { // this needs to be refactored
-    let newRecord: Record = this.record; // no id in newRecord ??
+    let newRecord: Record = this.record;
     if (measurement.value === undefined) {
       this.deleteMeasurement(newRecord, measurement.markerName);
     } else if (newRecord.date === null) {
@@ -36,12 +36,11 @@ export class RecordDetailComponent implements OnInit {
         date: this.activeDate,
         measurements: [measurement]
       };
-      newRecord.measurements.push(measurement);
       return this.createRecord(newRecord);
     } else if (newRecord.measurements.length === 0) {
       newRecord.measurements.push(measurement);
     } else {
-        let newMeasurements = newRecord.measurements.filter(currentMeasurement => {
+        const newMeasurements = newRecord.measurements.filter(currentMeasurement => {
           return currentMeasurement.markerName !== measurement.markerName;
         });
         newMeasurements.push(measurement);

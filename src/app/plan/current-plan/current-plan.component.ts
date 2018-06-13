@@ -1,8 +1,8 @@
+import { Marker } from './../../shared/types/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Plan } from './../plan.model';
-import { Marker } from '../../shared/marker.model';
 
 @Component({
   selector: 'app-current-plan',

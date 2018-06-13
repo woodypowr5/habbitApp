@@ -1,12 +1,11 @@
+import { Record } from './../shared/types/record.model';
+import { History } from './../shared/types/history.model';
 import { DateService } from './../shared/date.service';
 import { EmptyRecord } from './emptyRecord.class';
 import { RecordsComponent } from './records/records.component';
-import { Record } from './record.model';
 import { PlanService } from './../plan/plan.service';
-import { History } from './history.model';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { JsonPipe } from '@angular/common';
 import { TrackingService } from './tracking.service';
 import * as moment from 'moment';
 import { Plan } from '../plan/plan.model';
@@ -54,7 +53,7 @@ export class TrackingComponent implements OnInit, OnDestroy {
     return this.queryRecordsByDate(records, indexDate);
   }
 
-  queryRecordsByDate(records, date): Record {
+  queryRecordsByDate(records: Record[], date: moment.Moment): Record {
       const record = new EmptyRecord;
       const foundRecord = records.filter(currentRecord => {
         if (this.dateService.isSameDate(currentRecord.date, date)) {
@@ -65,13 +64,6 @@ export class TrackingComponent implements OnInit, OnDestroy {
         return foundRecord[0];
       }
       return record;
-  }
-
-  addRecord(): void {
-    const randomDate = Math.ceil(Math.trunc((Math.random() * 30)));
-    const convertedDate = moment().add(randomDate, 'day');
-    this.mockRecord.date = convertedDate.toDate();
-    this.trackingService.addRecordtoHistory(this.mockRecord);
   }
 
   setActiveRecord(record: Record): void {

@@ -1,6 +1,6 @@
+import { Datapoint } from './../../shared/types/datapoint.model';
+import { Record } from './../../shared/types/record.model';
 import { ChartDataService } from './../chart-data.service';
-import { Record } from './../../tracking/record.model';
-import { Datapoint } from './../datapoint.model';
 import { Component, ViewChild , Directive, ElementRef, HostListener, Input, Renderer, Output, OnInit, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import * as scatterChart from './scatter.chart';
@@ -51,4 +51,3 @@ export class TrendsSummaryComponent implements OnInit, AfterViewInit {
     return this.chartDataService.formatToDatapoints(records, includeMarkers, dateRange);
   }
 }
- 

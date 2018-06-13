@@ -1,6 +1,6 @@
+import { Measurement } from './../../../../shared/types/measurement.model';
+import { Marker } from './../../../../shared/types/marker.model';
 import { CalculationService } from './../../../../shared/calculation.service';
-import { Marker } from './../../../../shared/marker.model';
-import { Measurement } from './../../../measurement.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -24,14 +24,6 @@ export class RecordEntryMarkerComponent implements OnInit {
         this.measurement.value
       );
     }
-  }
-
-  translateValueToPercentage(min: number, max: number, sliderValue: number): number {
-    return ((sliderValue - 1) / (max - min)) * 100;
-  }
-
-  translatePercentageToValue(min: number, max: number, percentage: number): number {
-    return (percentage * (max - min) / 100) + min;
   }
 
   saveNewMeasurement(measurement: Measurement): void {

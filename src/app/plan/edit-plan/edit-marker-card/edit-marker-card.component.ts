@@ -1,8 +1,6 @@
+import { Marker } from './../../../shared/types/marker.model';
 import { UIService } from './../../../shared/ui.service';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-// import { NgForm } from '@angular/forms';
-
-import { Marker } from '../../../shared/marker.model';
 import { Plan } from './../../plan.model';
 
 @Component({
