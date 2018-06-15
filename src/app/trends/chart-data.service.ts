@@ -34,9 +34,9 @@ export class ChartDataService {
     return null;
   }
 
-  createSeriesData(records: Record[], plan: Plan) {
-    let seriesLookup = {};
-    let seriesData = [];
+  createSeriesData(records: Record[], plan: Plan): any {
+    const seriesLookup = {};
+    const seriesData = [];
     plan.markers.map( marker => {
       seriesLookup[marker.name] = [];
       seriesData.push({
@@ -44,7 +44,6 @@ export class ChartDataService {
         series: []
       });
     });
-
     records.map(record => {
       record.measurements.map(measurement => {
         if (measurement.markerName !== undefined && seriesLookup[measurement.markerName] !== undefined) {
@@ -55,15 +54,10 @@ export class ChartDataService {
         }
       });
     });
-
     seriesData.map(series => {
       series.series = seriesLookup[series.name];
     });
-
-    console.log('LOOKUP: ');
-    console.log(seriesLookup);
-    console.log('SERIESDATA: ');
-    console.log(seriesData);
+    return seriesData;
   }
 }
 
