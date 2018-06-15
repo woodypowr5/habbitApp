@@ -26,6 +26,7 @@
     "@angular/router": "^5.1.0",
     "@ngrx/effects": "^4.1.1",
     "@ngrx/store": "^4.1.1",
+    "@swimlane/ngx-charts": "^8.1.0",
     "@types/es6-shim": "^0.31.36",
     "@types/lodash": "^4.14.107",
     "angularfire2": "^5.0.0-rc.4",
